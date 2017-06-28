@@ -4,7 +4,7 @@ Inside `appSettings.json` I specified the following database connection informat
 
 ```json
 "ConnectionStrings": {
-    "DefaultConnection": "Server=tcp:fpmcontosouniversityangular.database.windows.net,1433;Initial Catalog=ContosoUniversity;Persist Security Info=False;User ID=DevAdmin;Password=Bulldog1$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    "DefaultConnection": "Server=tcp:fpmcontosouniversityangular.database.windows.net,1433;Initial Catalog=ContosoUniversity;Persist Security Info=False;User ID=DevAdmin;Password={ask me};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   }
 ```
 
