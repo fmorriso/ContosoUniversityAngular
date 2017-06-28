@@ -2,7 +2,7 @@
   <div class="col-md-12 text-center h2">Students</div>
 </div>
 
-<ng-template ngFor let-student [ngForOf]="students">
+<ng-template ngFor let-student [ngForOf]="students | async">
   <div class="row">
     <div class="col-md-6">{{student.fullName}}</div>
   </div>

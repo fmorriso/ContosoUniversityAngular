@@ -11,24 +11,21 @@ import { StudentsService }   from './students.service';
 })
 export class StudentsComponent implements OnInit {
 
-  public students: Student[];
+  public students: Observable<Student[]>;
 
   constructor(private studentsService: StudentsService) {
-    console.log('StudentsComponent - constructor');
+    //console.log('StudentsComponent - constructor');
   }
 
   ngOnInit() {
-    console.log('StudentsComponent - ngOnInit - 1.1');
+    //console.log('StudentsComponent - ngOnInit - 1.1');
     this.getStudents();
-    console.log('StudentsComponent - ngOnInit - 2.1');
+    //console.log('StudentsComponent - ngOnInit - 2.1');
   }
 
   getStudents() {
-    console.log('StudentsComponent - getStudents - 1');
-    this.students = [];
-    this.studentsService.getStudents()
-      .subscribe( students => {this.students = students} );
-    console.log(JSON.stringify(this.students));
-    console.log('StudentsComponent - getStudents - 2');
+    //console.log('StudentsComponent - getStudents - 1');
+    this.students = this.studentsService.getStudents();
+    //console.log('StudentsComponent - getStudents - 2');
   }
 }

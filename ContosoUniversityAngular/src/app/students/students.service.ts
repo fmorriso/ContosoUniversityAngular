@@ -20,21 +20,13 @@ export class StudentsService {
   
   constructor(private http: Http) { }
 
-  // C:\projects\angular-first-look-examples\_examples\storyline-tracker\app\vehicles\shared
-  getStudents() {
+  getStudents() : Observable<Student[]> {
     console.log(`StudentsService -  getStudents - ${this.relativeUrl}`);
     return <Observable<Student[]>> this.http
       .get(this.relativeUrl)
       .map((res: Response) => this.extractDataExtended<Student[]>(res))
       .do(data => console.log(`StudentsService -  getStudents - data = ${JSON.stringify(data)}`) )
       ;
-  }
-
-  private extractData(res: Response) {
-    console.log(`StudentService - extractData - Response.status=${res.status}`);
-    const body = res.json();
-    console.log(`StudentService - extractData - Response.body=${body}`);
-    return body || {};
   }
 
   private extractDataExtended<T>(res: Response) {

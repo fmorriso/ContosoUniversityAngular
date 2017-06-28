@@ -783,7 +783,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/students/students.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-12 text-center h2\">Students</div>\r\n</div>\r\n\r\n<ng-template ngFor let-student [ngForOf]=\"students\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-6\">{{student.fullName}}</div>\r\n  </div>\r\n</ng-template>\r\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-12 text-center h2\">Students</div>\r\n</div>\r\n\r\n<ng-template ngFor let-student [ngForOf]=\"students | async\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-6\">{{student.fullName}}</div>\r\n  </div>\r\n</ng-template>\r\n"
 
 /***/ }),
 
@@ -808,21 +808,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var StudentsComponent = (function () {
     function StudentsComponent(studentsService) {
         this.studentsService = studentsService;
-        console.log('StudentsComponent - constructor');
+        //console.log('StudentsComponent - constructor');
     }
     StudentsComponent.prototype.ngOnInit = function () {
-        console.log('StudentsComponent - ngOnInit - 1.1');
+        //console.log('StudentsComponent - ngOnInit - 1.1');
         this.getStudents();
-        console.log('StudentsComponent - ngOnInit - 2.1');
+        //console.log('StudentsComponent - ngOnInit - 2.1');
     };
     StudentsComponent.prototype.getStudents = function () {
-        var _this = this;
-        console.log('StudentsComponent - getStudents - 1');
-        this.students = [];
-        this.studentsService.getStudents()
-            .subscribe(function (students) { _this.students = students; });
-        console.log(JSON.stringify(this.students));
-        console.log('StudentsComponent - getStudents - 2');
+        //console.log('StudentsComponent - getStudents - 1');
+        this.students = this.studentsService.getStudents();
+        //console.log('StudentsComponent - getStudents - 2');
     };
     StudentsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_10" /* Component */])({
@@ -880,7 +876,6 @@ var StudentsService = (function () {
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.relativeUrl = 'api/students'; // URL to web api
     }
-    // C:\projects\angular-first-look-examples\_examples\storyline-tracker\app\vehicles\shared
     StudentsService.prototype.getStudents = function () {
         var _this = this;
         console.log("StudentsService -  getStudents - " + this.relativeUrl);
@@ -888,12 +883,6 @@ var StudentsService = (function () {
             .get(this.relativeUrl)
             .map(function (res) { return _this.extractDataExtended(res); })
             .do(function (data) { return console.log("StudentsService -  getStudents - data = " + JSON.stringify(data)); });
-    };
-    StudentsService.prototype.extractData = function (res) {
-        console.log("StudentService - extractData - Response.status=" + res.status);
-        var body = res.json();
-        console.log("StudentService - extractData - Response.body=" + body);
-        return body || {};
     };
     StudentsService.prototype.extractDataExtended = function (res) {
         console.log("StudentService - extractDataExtended - Response.status=" + res.status);
