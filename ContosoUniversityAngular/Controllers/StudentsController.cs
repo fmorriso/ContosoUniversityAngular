@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +20,8 @@ namespace ContosoUniversityAngular.Controllers
         public async Task<IEnumerable<Student>> GetStudents()
         {
             return await _context.Students
+                                 .OrderBy(column => column.LastName)
+                                 .ThenBy(column => column.FirstMidName)
                                  .AsNoTracking()
                                  .ToListAsync();
         }

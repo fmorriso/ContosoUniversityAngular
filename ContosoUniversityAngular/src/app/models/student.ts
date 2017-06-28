@@ -1,5 +1,5 @@
-﻿import { Person } from "app/models/person";
-import { Enrollment } from "app/models/enrollment";
+﻿import { Person }     from './person';
+import { Enrollment } from './enrollment';
 
 export class Student extends Person {
   /*[DataType(DataType.Date)]

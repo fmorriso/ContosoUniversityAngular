@@ -5,7 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --progress --verbose --vendor-chunk --extract-css --prod",
+    "build": "ng build --progress --verbose",
+    "build-prod": "ng build --progress --verbose --vendor-chunk --extract-css --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -23,7 +24,7 @@
     "@angular/router": "^4.0.0",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
-    "rxjs": "^5.4.1",
+    "rxjs": "5.4.1",
     "zone.js": "^0.8.12"
   },
   "devDependencies": {
@@ -44,7 +45,7 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.1.0",
     "tslint": "~5.4.3",
-    "typescript": "~2.3.4"
+    "typescript": "2.4.0"
   },
   "-vs-binding": {
     "BeforeBuild": [
