@@ -2,11 +2,11 @@
 import { Course }     from './course';
 
 export class Department {
-  DepartmentID: number;
-  Name: string;
-  Budget: number;
-  StartDate: Date;
-  InstructorID?: number;
-  Administrator?: Instructor;
-  Courses: Array<Course>;
+  departmentID: number;
+  name: string;
+  budget: number;
+  startDate: Date;
+  instructorID?: number;
+  administrator?: Instructor;
+  courses: Array<Course>;
 }

@@ -5,13 +5,13 @@ import { Department }       from './department';
 export class Course {
   /*[DatabaseGenerated(DatabaseGeneratedOption.None)]
 [Display(Name = "Number")]*/
-  public CourseID: number;
+  public courseID: number;
   /*[StringLength(50, MinimumLength = 3)]*/
-  public Title: string;
+  public title: string;
   /*[Range(0, 5)]*/
-  public Credits: number;
+  public credits: number;
   public DepartmentID: number;
-  public Department: Department;
-  public Enrollments: Array<Enrollment>;
-  public CourseAssignments: Array<CourseAssignment>;
+  public department: Department;
+  public dnrollments: Array<Enrollment>;
+  public courseAssignments: Array<CourseAssignment>;
 }

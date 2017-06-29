@@ -1,3 +1,12 @@
 ﻿<div class="row">
-  <div class="col-md-12 text-center h2">Courses</div>
+	<div class="col-md-12 text-center h2">Courses</div>
 </div>
+
+<ng-template ngFor let-course [ngForOf]="courses | async">
+	<div class="row">
+		<div class="col-md-2">{{course.courseId}}</div>
+		<div class="col-md-2">{{course.title}}</div>
+		<div class="col-md-2">{{course.credits}}</div>
+		<div class="col-md-2">{{getDepartmentName(course)}}</div>
+	</div>
+</ng-template>

@@ -19,6 +19,7 @@ import { DepartmentsComponent } from './departments/departments.component';
 import { ContactComponent } from './contact/contact.component';
 import { StudentsService } from './students/students.service';
 import { InstructorsService } from './instructors/instructors.service';
+import { CoursesService } from './courses/courses.service';
 
 @NgModule({
 	declarations: [
@@ -41,7 +42,7 @@ import { InstructorsService } from './instructors/instructors.service';
 		HttpModule,
 		AppRoutingModule
 	],
-	providers: [StudentsService, InstructorsService],
+	providers: [StudentsService, InstructorsService, CoursesService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
