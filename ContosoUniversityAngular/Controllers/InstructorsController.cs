@@ -21,7 +21,7 @@ namespace ContosoUniversityAngular.Controllers
 		public async Task<IEnumerable<Instructor>> GetInstructors()
 		{
 			return await _context.Instructors
-				                 //.Include(i => i.CourseAssignments)
+				                 .Include(i => i.CourseAssignments)
 								 .Include(i => i.OfficeAssignment)
 				                 .OrderBy(column => column.LastName)
 				                 .ThenBy(column => column.FirstMidName)
