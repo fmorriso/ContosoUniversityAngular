@@ -11,7 +11,7 @@ import { StudentsService }   from './students.service';
 })
 export class StudentsComponent implements OnInit {
 
-  public students: Observable<Student[]>;
+  students: Observable<Student[]>;
 
   constructor(private studentsService: StudentsService) {
     //console.log('StudentsComponent - constructor');

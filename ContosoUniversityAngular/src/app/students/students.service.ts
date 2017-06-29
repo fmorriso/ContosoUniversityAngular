@@ -4,13 +4,11 @@ import { Headers, Http, Response } from '@angular/http';
 import { Observable }              from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-//import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/of';
-//import 'rxjs/add/observable/subscribe';
 
-import { Student } from 'app/models/student';
+import { Student } from '../models/student';
 
 @Injectable()
 export class StudentsService {

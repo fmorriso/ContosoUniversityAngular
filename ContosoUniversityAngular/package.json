@@ -1,12 +1,13 @@
 {
-  "name": "aacli",
+  "name": "contoso-university-angular",
+  "description": "Microsoft's Contoso University ASP.Net Core tutorial converted to use Angular 4.x for the UI part",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --progress --verbose",
-    "build-prod": "ng build --progress --verbose --vendor-chunk --extract-css --prod",
+    "build-dev": "ng build --progress --verbose",
+    "build": "ng build --progress --verbose --vendor-chunk --extract-css --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

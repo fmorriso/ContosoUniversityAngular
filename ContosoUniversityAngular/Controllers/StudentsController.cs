@@ -35,7 +35,8 @@ namespace ContosoUniversityAngular.Controllers
                 return BadRequest(ModelState);
             }
 
-            var student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
+            var student = await _context.Students
+                                        .FindAsync(id);
 
             if (student == null)
             {
@@ -104,7 +105,7 @@ namespace ContosoUniversityAngular.Controllers
                 return BadRequest(ModelState);
             }
 
-            var student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
+            var student = await _context.Students.FindAsync(id);
             if (student == null)
             {
                 return NotFound();

@@ -15,6 +15,7 @@ import { InstructorsComponent }  from './instructors/instructors.component';
 import { DepartmentsComponent }  from './departments/departments.component';
 import { ContactComponent }      from './contact/contact.component';
 import { StudentsService }       from './students/students.service';
+import { InstructorsService } from './instructors/instructors.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { StudentsService }       from './students/students.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [StudentsService],
+  providers: [StudentsService, InstructorsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
