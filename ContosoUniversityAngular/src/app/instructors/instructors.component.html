@@ -4,7 +4,9 @@
 
 <ng-template ngFor let-instructor [ngForOf]="instructors | async">
 	<div class="row">
-		<div class="col-md-4">{{instructor.fullName}}</div>
-		<div class="col-md-4">{{instructor.hireDate | date:"yyyy-MM-dd"}}</div>
+		<div class="col-md-2">{{instructor.lastName}}</div>
+		<div class="col-md-2">{{instructor.firstMidName}}</div>
+		<div class="col-md-2">{{instructor.hireDate | date:"yyyy-MM-dd"}}</div>
+		<div class="col-md-2">{{getOfficeLocation(instructor)}}</div>
 	</div>
 </ng-template>

@@ -21,52 +21,13 @@ namespace ContosoUniversityAngular.Controllers
 		public async Task<IEnumerable<Instructor>> GetInstructors()
 		{
 			return await _context.Instructors
-				                 .Include(i => i.CourseAssignments)
+				                 //.Include(i => i.CourseAssignments)
 								 .Include(i => i.OfficeAssignment)
 				                 .OrderBy(column => column.LastName)
 				                 .ThenBy(column => column.FirstMidName)
 								 .AsNoTracking()
 								 .ToListAsync();
 		}
-
-#if USE_NEW_CODE
-		// GET: api/Instructors/Details
-		[HttpGet("Details")]
-		public async Task<IActionResult> Details()
-		{
-			var viewModel = new InstructorIndexData();
-			viewModel.Instructors = await _context.Instructors
-			  .Include(i => i.OfficeAssignment)
-			  .Include(i => i.CourseAssignments)
-			  .ThenInclude(i => i.Course)
-			  .ThenInclude(i => i.Department)
-			  .OrderBy(i => i.LastName)
-			  .ThenBy(i => i.FirstMidName)
-			  .ToListAsync();
-
-#if USE_ARGS
-			if (id != null)
-			{
-				Instructor instructor = viewModel.Instructors
-					.Where(i => i.ID == id.Value).Single();
-				viewModel.Courses = instructor.CourseAssignments.Select(s => s.Course);
-			}
-
-			if (courseID != null)
-			{
-				var selectedCourse = viewModel.Courses.Where(x => x.CourseID == courseID).Single();
-				await _context.Entry(selectedCourse).Collection(x => x.Enrollments).LoadAsync();
-				foreach (Enrollment enrollment in selectedCourse.Enrollments)
-				{
-					await _context.Entry(enrollment).Reference(x => x.Student).LoadAsync();
-				}
-				viewModel.Enrollments = selectedCourse.Enrollments;
-			}
-
-#endif
-			return Ok(viewModel);
-		} 
-#endif
 
 		// GET: api/Instructors/5
 		[HttpGet("{id}")]

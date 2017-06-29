@@ -26,4 +26,17 @@ export class InstructorsComponent implements OnInit {
 		this.instructors = this.instructorsService.getInstructors();
 		console.log('InstructorsComponent - getInstructors - 2');
 	}
+
+	public getOfficeLocation(instructor: Instructor): string {
+		console.log(`InstructorsComponent - getOfficeLocation - ${JSON.stringify(instructor)}`);
+		if (instructor) {
+			if (instructor.officeAssignment) {
+				if (instructor.officeAssignment.location) {
+					return instructor.officeAssignment.location;
+				}
+			}
+		}
+		return '(none)';
+
+	}
 }

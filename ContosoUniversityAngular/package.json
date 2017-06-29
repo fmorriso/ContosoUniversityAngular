@@ -6,8 +6,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build-dev": "ng build --progress --verbose",
-    "build": "ng build --progress --verbose --vendor-chunk --extract-css --prod",
+    "build": "ng build --progress --verbose --vendor-chunk --extract-css",
+    "build-prod": "ng build --progress --verbose --vendor-chunk --extract-css --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

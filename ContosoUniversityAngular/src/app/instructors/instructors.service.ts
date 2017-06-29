@@ -19,7 +19,7 @@ export class InstructorsService {
 	constructor(private http: Http) { }
 
 	getInstructors(): Observable<Instructor[]> {
-		console.log(`InstructorsService -  getInstructors - ${this.relativeUrl}`);
+		//console.log(`InstructorsService -  getInstructors - ${this.relativeUrl}`);
 		return <Observable<Instructor[]>>this.http
 			.get(this.relativeUrl)
 			.map((res: Response) => this.extractDataExtended<Instructor[]>(res))
@@ -28,12 +28,12 @@ export class InstructorsService {
 	}
 
 	private extractDataExtended<T>(res: Response) {
-		console.log(`InstructorsService - extractDataExtended - Response.status=${res.status}`);
+		//console.log(`InstructorsService - extractDataExtended - Response.status=${res.status}`);
 		if (res.status < 200 || res.status >= 300) {
 			throw new Error('Bad response status: ' + res.status);
 		}
 		const body = res.json ? res.json() : null;
-		console.log(`InstructorsService - extractDataExtended - Response.body=${body}`);
+		//console.log(`InstructorsService - extractDataExtended - Response.body=${body}`);
 		return <T>(body || {});
 	}
 

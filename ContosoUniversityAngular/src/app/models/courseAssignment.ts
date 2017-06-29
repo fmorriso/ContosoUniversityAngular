@@ -2,8 +2,8 @@
 import { Course }     from './course'
 
 export class CourseAssignment {
-  public InstructorID: number;
-  public CourseID: number;
-  public Instructor: Instructor;
-  public Course: Course;
+  public instructorID: number;
+  public courseID: number;
+  public instructor: Instructor;
+  public course: Course;
 }
