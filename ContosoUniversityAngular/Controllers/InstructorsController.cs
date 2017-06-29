@@ -21,6 +21,8 @@ namespace ContosoUniversityAngular.Controllers
 		public async Task<IEnumerable<Instructor>> GetInstructors()
 		{
 			return await _context.Instructors
+				                 .Include(i => i.CourseAssignments)
+								 .Include(i => i.OfficeAssignment)
 				                 .OrderBy(column => column.LastName)
 				                 .ThenBy(column => column.FirstMidName)
 								 .AsNoTracking()
@@ -28,9 +30,9 @@ namespace ContosoUniversityAngular.Controllers
 		}
 
 #if USE_NEW_CODE
-		// GET: Instructors
-		[HttpGet]
-		public async Task<IActionResult> Index(int? id, int? courseID)
+		// GET: api/Instructors/Details
+		[HttpGet("Details")]
+		public async Task<IActionResult> Details()
 		{
 			var viewModel = new InstructorIndexData();
 			viewModel.Instructors = await _context.Instructors
@@ -42,6 +44,7 @@ namespace ContosoUniversityAngular.Controllers
 			  .ThenBy(i => i.FirstMidName)
 			  .ToListAsync();
 
+#if USE_ARGS
 			if (id != null)
 			{
 				Instructor instructor = viewModel.Instructors
@@ -60,6 +63,7 @@ namespace ContosoUniversityAngular.Controllers
 				viewModel.Enrollments = selectedCourse.Enrollments;
 			}
 
+#endif
 			return Ok(viewModel);
 		} 
 #endif

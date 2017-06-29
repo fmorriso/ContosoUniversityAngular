@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ContosoUniversityAngular.Database;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace ContosoUnivserityAngular
 {
@@ -18,6 +20,7 @@ namespace ContosoUnivserityAngular
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+			
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -25,11 +28,17 @@ namespace ContosoUnivserityAngular
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+	        services.AddMvc().AddJsonOptions(options => {
+		        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+		        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+	        });
+
+			// Add framework services.
+			var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SchoolContext>(options => options.UseSqlServer(connectionString));
             services.AddMvc();
-        }
+			
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, SchoolContext context)
@@ -39,7 +48,9 @@ namespace ContosoUnivserityAngular
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseMvc();
+			// https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing
+			app.UseMvc();
+	        //app.UseMvcWithDefaultRoute();
             DbInitializer.Initialize(context);
         }
     }
