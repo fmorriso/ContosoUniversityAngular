@@ -16,14 +16,16 @@ export class InstructorsService {
 	private headers = new Headers({ 'Content-Type': 'application/json' });
 	private relativeUrl = 'api/instructors';  // URL to web api
 
-	constructor(private http: Http) { }
+	constructor(private http: Http) {
+		console.log('InstructorsService - constructor');
+	}
 
-	getInstructors(): Observable<Instructor[]> {
-		//console.log(`InstructorsService -  getInstructors - ${this.relativeUrl}`);
+	public getInstructors(): Observable<Instructor[]> {
+		console.log(`InstructorsService - getInstructors - ${this.relativeUrl}`);
 		return <Observable<Instructor[]>>this.http
 			.get(this.relativeUrl)
 			.map((res: Response) => this.extractDataExtended<Instructor[]>(res))
-			.do(data => console.log(`InstructorsService -  getInstructors - data = ${JSON.stringify(data)}`))
+			.do(data => console.log(`InstructorsService - getInstructors - data = ${JSON.stringify(data)}`))
 			;
 	}
 
@@ -33,7 +35,7 @@ export class InstructorsService {
 			throw new Error('Bad response status: ' + res.status);
 		}
 		const body = res.json ? res.json() : null;
-		//console.log(`InstructorsService - extractDataExtended - Response.body=${body}`);
+		console.log(`InstructorsService - extractDataExtended - Response.body=${body}`);
 		return <T>(body || {});
 	}
 

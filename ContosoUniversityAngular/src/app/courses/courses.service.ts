@@ -16,10 +16,12 @@ export class CoursesService {
 	private headers = new Headers({ 'Content-Type': 'application/json' });
 	private relativeUrl = 'api/courses';  // URL to web api
 
-	constructor(private http: Http) { }
+	constructor(private http: Http) {
+		console.log('CoursesService - constructor');
+	}
 
 	getCourses(): Observable<Course[]> {
-		//console.log(`CoursesService -  getCourses - ${this.relativeUrl}`);
+		console.log(`CoursesService -  getCourses - ${this.relativeUrl}`);
 		return <Observable<Course[]>>this.http
 			.get(this.relativeUrl)
 			.map((res: Response) => this.extractDataExtended<Course[]>(res))
@@ -28,12 +30,12 @@ export class CoursesService {
 	}
 
 	private extractDataExtended<T>(res: Response) {
-		//console.log(`InstructorsService - extractDataExtended - Response.status=${res.status}`);
+		console.log(`CoursesService - extractDataExtended - Response.status=${res.status}`);
 		if (res.status < 200 || res.status >= 300) {
 			throw new Error('Bad response status: ' + res.status);
 		}
 		const body = res.json ? res.json() : null;
-		//console.log(`InstructorsService - extractDataExtended - Response.body=${body}`);
+		console.log(`CoursesService - extractDataExtended - Response.body=${body}`);
 		return <T>(body || {});
 	}
 

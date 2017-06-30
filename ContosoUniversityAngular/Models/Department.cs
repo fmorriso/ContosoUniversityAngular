@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +8,9 @@ namespace ContosoUniversityAngular.Models
 {
     public class Department
     {
-        public int DepartmentID { get; set; }
+	    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+	    [Display(Name = "Number")]
+		public int DepartmentID { get; set; }
 
         [StringLength(50, MinimumLength = 3)]
         public string Name { get; set; }
@@ -23,10 +26,13 @@ namespace ContosoUniversityAngular.Models
 
         public int? InstructorID { get; set; }
 
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
+#if INCLUDE_ROW_VERSION
+		[JsonIgnore]
+		[Timestamp]
+		public byte[] RowVersion { get; set; } 
+#endif
 
-        public Instructor Administrator { get; set; }
+		public Instructor Administrator { get; set; }
         public ICollection<Course> Courses { get; set; }
     }
 }

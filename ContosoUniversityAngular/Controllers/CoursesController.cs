@@ -17,15 +17,28 @@ namespace ContosoUniversityAngular.Controllers
         {
         }
 
-        // GET: api/Courses
-        [HttpGet]
-        public async Task<IEnumerable<Course>> GetCourses()
-        {
-            return await _context.Courses
-                                 .Include(i => i.Department)
-                                 .AsNoTracking()
-                                 .ToListAsync();
-        }
+		// GET: api/Courses
+#if GET_ASYNC
+		[HttpGet]
+		public async Task<IEnumerable<Course>> GetCoursesAsync()
+		{
+			return await _context.Courses
+								 .Include(i => i.Department)
+								 .OrderBy(column => column.Title)
+								 .AsNoTracking()
+								 .ToListAsync();
+		} 
+#endif
+
+		[HttpGet]
+	    public IEnumerable<Course> GetCourses()
+	    {
+			return  _context.Courses
+				.Include(i => i.Department)
+				.OrderBy(column => column.Title)
+				.AsNoTracking()
+				.ToList();
+		}
 
         // GET: api/Courses/5
         [HttpGet("{id}")]

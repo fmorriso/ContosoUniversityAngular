@@ -12,22 +12,34 @@ namespace ContosoUniversityAngular.Controllers
     [Route("api/Departments")]
     public class DepartmentsController : BaseController
     {
-
         public DepartmentsController(SchoolContext context): base(context)
         {}
 
-        // GET: api/Departments
-        [HttpGet]
-        public async Task<IEnumerable<Department>> GetDepartments()
-        {
-            return await _context.Departments
-                                 .Include(d => d.Administrator)
-                                 .AsNoTracking()
-                                 .ToListAsync();
-        }
+		// GET: api/Departments
+#if GET_ASYNC
+		[HttpGet]
+		public async Task<IEnumerable<Department>> GetDepartmentsAsync()
+		{
+			return await _context.Departments
+								 //.Include(d => d.Administrator)
+								 //.Include(c => c.Courses)
+								 .OrderBy(column => column.Name)
+								 .AsNoTracking()
+								 .ToListAsync();
+		} 
+#endif
 
-        // GET: api/Departments/5
-        [HttpGet("{id}")]
+		[HttpGet]
+	    public async Task<IEnumerable<DepartmentSummaryView>> GetDepartments()
+	    {
+		    return await _context.DepartmentSummaryView
+			                     .OrderBy(column => column.Name)
+			                     .AsNoTracking()
+			                     .ToListAsync();
+	    }
+
+		// GET: api/Departments/5
+		[HttpGet("{id}")]
         public async Task<IActionResult> GetDepartment([FromRoute] int id)
         {
             if (!ModelState.IsValid)

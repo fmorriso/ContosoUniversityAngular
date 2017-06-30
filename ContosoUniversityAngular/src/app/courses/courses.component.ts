@@ -14,7 +14,9 @@ export class CoursesComponent implements OnInit {
 
 	courses: Observable<Course[]>;
 
-	constructor(private coursesService: CoursesService) { console.log('CoursesComponent - constructor'); }
+	constructor(private coursesService: CoursesService) {
+		 console.log('CoursesComponent - constructor');
+	}
 
 	ngOnInit() {
 		console.log('CoursesComponent - ngOnInit - 1');
@@ -28,7 +30,7 @@ export class CoursesComponent implements OnInit {
 		console.log('CoursesComponent - getInstructors - 2');
 	}
 
-	public getDepartmentName(course: Course): string {
+	getDepartmentName(course: Course): string {
 		console.log(`CoursesComponent - getDepartmentName - ${JSON.stringify(course)}`);
 		if (course) {
 			if (course.department) {
@@ -36,7 +38,6 @@ export class CoursesComponent implements OnInit {
 					return course.department.name;
 				}
 			}
-			
 		}
 		return '(none)';
 	}

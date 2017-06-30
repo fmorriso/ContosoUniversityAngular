@@ -12,5 +12,22 @@ namespace ContosoUniversityAngular.Controllers
             _context = context;
             _context.GetInfrastructure();
         }
-    }
+		
+	    /// <summary>
+	    /// 
+	    /// </summary>
+	    /// <param name="disposing"></param>
+	    protected override void Dispose(bool disposing)
+	    {
+		    if (disposing)
+		    {
+			    if (_context != null)
+			    {
+				    _context.Dispose();
+			    }
+		    }
+
+		    base.Dispose(disposing);
+	    }
+	}
 }

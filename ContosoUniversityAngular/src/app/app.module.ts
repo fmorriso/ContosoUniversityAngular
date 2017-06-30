@@ -20,6 +20,7 @@ import { ContactComponent } from './contact/contact.component';
 import { StudentsService } from './students/students.service';
 import { InstructorsService } from './instructors/instructors.service';
 import { CoursesService } from './courses/courses.service';
+import { DepartmentsService } from './departments/departments.service';
 
 @NgModule({
 	declarations: [
@@ -29,10 +30,10 @@ import { CoursesService } from './courses/courses.service';
 		HomeComponent,
 		AboutComponent,
 		PageNotFoundComponent,
+		DepartmentsComponent,
 		StudentsComponent,
 		CoursesComponent,
 		InstructorsComponent,
-		DepartmentsComponent,
 		ContactComponent
 	],
 	imports: [
@@ -42,7 +43,12 @@ import { CoursesService } from './courses/courses.service';
 		HttpModule,
 		AppRoutingModule
 	],
-	providers: [StudentsService, InstructorsService, CoursesService],
+	providers: [
+		DepartmentsService,
+		StudentsService,
+		InstructorsService,
+		CoursesService
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

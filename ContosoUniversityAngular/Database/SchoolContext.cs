@@ -28,6 +28,8 @@ namespace ContosoUniversityAngular.Database
         public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
         public DbSet<CourseAssignment> CourseAssignments { get; set; }
         public DbSet<Person> People { get; set; }
+		
+		public DbSet<DepartmentSummaryView> DepartmentSummaryView { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

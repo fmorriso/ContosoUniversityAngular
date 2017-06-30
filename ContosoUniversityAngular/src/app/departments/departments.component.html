@@ -1,3 +1,13 @@
 ﻿<div class="row">
-  <div class="col-md-12 text-center h2">Departments</div>
+	<div class="col-md-12 text-center h2">Departments</div>
 </div>
+
+<ng-template ngFor let-department [ngForOf]="departments | async">
+	<div class="row">
+		<div class="col-md-2">{{department.id}}</div>
+		<div class="col-md-2">{{department.name}}</div>
+		<div class="col-md-2">{{department.budget}}</div>
+		<div class="col-md-2">{{department.startDate | date:"yyyy-MM-dd"}}</div>
+		<div class="col-md-4">{{getAdministratorName(department)}}</div>
+	</div>
+</ng-template>
