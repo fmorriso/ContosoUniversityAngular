@@ -1,9 +1,13 @@
 ﻿import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { LabelModule } from '@progress/kendo-angular-label';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,8 +43,12 @@ import { DepartmentsService } from './departments/departments.service';
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
-		ToastModule.forRoot(),
+		FormsModule,
 		HttpModule,
+		DateInputsModule,
+		InputsModule,
+		ButtonsModule,
+		LabelModule,
 		AppRoutingModule
 	],
 	providers: [

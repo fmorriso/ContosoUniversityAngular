@@ -11,9 +11,7 @@ import { DepartmentsService } from './departments.service';
 	styleUrls: ['./departments.component.css']
 })
 export class DepartmentsComponent implements OnInit {
-	/**
-	 Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor:Information: Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
-	 */
+
 	departments: Observable<DepartmentSummaryView[]>;
 
 	constructor(private departmentsService: DepartmentsService) {

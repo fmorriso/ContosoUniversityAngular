@@ -23,9 +23,15 @@
 		"@angular/platform-browser": "^4.0.0",
 		"@angular/platform-browser-dynamic": "^4.0.0",
 		"@angular/router": "^4.0.0",
+		"@progress/kendo-angular-buttons": "^1.0.0",
+		"@progress/kendo-angular-dateinputs": "^1.0.0",
+		"@progress/kendo-angular-inputs": "^1.0.0",
+		"@progress/kendo-angular-intl": "^1.0.0",
+		"@progress/kendo-angular-l10n": "^1.0.0",
+		"@progress/kendo-angular-label": "^1.0.0",
+		"@progress/kendo-theme-bootstrap": "^2.0.0",
 		"bootstrap": "^3.3.7",
 		"core-js": "^2.4.1",
-		"ng2-toastr": "^4.1.2",
 		"rxjs": "5.4.1",
 		"zone.js": "^0.8.12"
 	},
@@ -47,7 +53,7 @@
 		"protractor": "~5.1.2",
 		"ts-node": "~3.1.0",
 		"tslint": "~5.4.3",
-		"typescript": "^2.4.0"
+		"typescript": "2.4.0"
 	},
 	"-vs-binding": {
 		"BeforeBuild": [
