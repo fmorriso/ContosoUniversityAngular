@@ -21,9 +21,10 @@ export class InstructorsService {
 	}
 
 	public getInstructors(): Observable<Instructor[]> {
-		console.log(`InstructorsService - getInstructors - ${this.relativeUrl}`);
+		const url: string = `${this.relativeUrl}/list`
+		console.log(`InstructorsService -  getDepartments - ${url}`);
 		return <Observable<Instructor[]>>this.http
-			.get(this.relativeUrl)
+			.get(url)
 			.map((res: Response) => this.extractDataExtended<Instructor[]>(res))
 			.do(data => console.log(`InstructorsService - getInstructors - data = ${JSON.stringify(data)}`))
 			;

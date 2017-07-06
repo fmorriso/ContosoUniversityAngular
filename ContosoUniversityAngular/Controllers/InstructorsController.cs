@@ -10,15 +10,21 @@ using ContosoUniversityAngular.Models.SchoolViewModels;
 namespace ContosoUniversityAngular.Controllers
 {
 	[Produces("application/json")]
-	[Route("api/Instructors")]
 	public class InstructorsController : BaseController
 	{
 		public InstructorsController(SchoolContext context) : base(context)
 		{ }
 
-		// GET: api/Instructors
-		[HttpGet]
-		public async Task<IEnumerable<Instructor>> GetInstructors()
+		/// <summary>
+		/// Gets a list of instructors that are suitable for displaying
+		/// in some type of table, list or grid control by the UI.
+		/// </summary>
+		/// <example>
+		/// http://localhost:4200/api/instructors/list
+		/// </example>
+		/// <returns></returns>
+		[HttpGet("api/[controller]/[action]")]
+		public async Task<IEnumerable<Instructor>> List()
 		{
 			return await _context.Instructors
 				                 .Include(i => i.CourseAssignments)
@@ -30,7 +36,7 @@ namespace ContosoUniversityAngular.Controllers
 		}
 
 		// GET: api/Instructors/5
-		[HttpGet("{id}")]
+		[HttpGet("api/[controller]/{id:int}")]
 		public async Task<IActionResult> GetInstructor([FromRoute] int id)
 		{
 			if (!ModelState.IsValid)
@@ -49,7 +55,7 @@ namespace ContosoUniversityAngular.Controllers
 		}
 
 		// PUT: api/Instructors/5
-		[HttpPut("{id}")]
+		[HttpPut("api/[controller]/{id:int}")]
 		public async Task<IActionResult> PutInstructor([FromRoute] int id, [FromBody] Instructor instructor)
 		{
 			if (!ModelState.IsValid)
@@ -84,7 +90,7 @@ namespace ContosoUniversityAngular.Controllers
 		}
 
 		// POST: api/Instructors
-		[HttpPost]
+		[HttpPost("api/[controller]")]
 		public async Task<IActionResult> PostInstructor([FromBody] Instructor instructor)
 		{
 			if (!ModelState.IsValid)
@@ -99,7 +105,7 @@ namespace ContosoUniversityAngular.Controllers
 		}
 
 		// DELETE: api/Instructors/5
-		[HttpDelete("{id}")]
+		[HttpDelete("api/[controller]/{id:int}")]
 		public async Task<IActionResult> DeleteInstructor([FromRoute] int id)
 		{
 			if (!ModelState.IsValid)
@@ -107,7 +113,7 @@ namespace ContosoUniversityAngular.Controllers
 				return BadRequest(ModelState);
 			}
 
-			var instructor = await _context.Instructors.SingleOrDefaultAsync(m => m.ID == id);
+			var instructor = await _context.Instructors.FindAsync(id);
 			if (instructor == null)
 			{
 				return NotFound();
