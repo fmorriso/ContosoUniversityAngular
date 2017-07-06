@@ -8,6 +8,7 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { LabelModule } from '@progress/kendo-angular-label';
+import { GridModule } from '@progress/kendo-angular-grid';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { StudentsService } from './students/students.service';
 import { InstructorsService } from './instructors/instructors.service';
 import { CoursesService } from './courses/courses.service';
 import { DepartmentsService } from './departments/departments.service';
+import { AboutService } from './about/about.service';
 
 @NgModule({
 	declarations: [
@@ -49,13 +51,15 @@ import { DepartmentsService } from './departments/departments.service';
 		InputsModule,
 		ButtonsModule,
 		LabelModule,
+		GridModule,
 		AppRoutingModule
 	],
 	providers: [
 		DepartmentsService,
 		StudentsService,
 		InstructorsService,
-		CoursesService
+		CoursesService,
+		AboutService
 	],
 	bootstrap: [AppComponent]
 })

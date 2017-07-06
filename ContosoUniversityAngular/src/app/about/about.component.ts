@@ -1,4 +1,8 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { AboutService } from './about.service';
+import { StudentCountByEnrollmentDateView } from '../models/StudentCountByEnrollmentDateView';
 
 @Component({
 	selector: 'app-about',
@@ -7,8 +11,20 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-	constructor() {}
+	enrollmentDateCounts: Observable<StudentCountByEnrollmentDateView[]>
 
-	ngOnInit() {}
+	constructor(private aboutService: AboutService) {}
+
+	ngOnInit() {
+		console.log('AboutComponent - ngOnInit - 1');
+		this.getEnrollmentDateCounts();
+		console.log('AboutComponent - ngOnInit - 2');
+	}
+
+	getEnrollmentDateCounts() {
+		console.log('AboutComponent - getInstructors - 1');
+		this.enrollmentDateCounts = this.aboutService.getCountByEnrollmentDate();
+		console.log('AboutComponent - getInstructors - 2');
+	}
 
 }

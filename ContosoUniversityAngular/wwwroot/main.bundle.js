@@ -16,7 +16,7 @@ webpackEmptyContext.id = "../../../../../src async recursive";
 /***/ "../../../../../src/app/about/about.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-12 text-center h2\">Student Body Statistics</div>\r\n</div>\r\n<table class=\"table table-striped table-condensed table-bordered\">\r\n  <tr>\r\n    <th>\r\n      Enrollment Date\r\n    </th>\r\n    <th>\r\n      Students\r\n    </th>\r\n  </tr>\r\n</table>\r\n"
+module.exports = "<div class=\"row\">\r\n\t<div class=\"col-md-12 text-center h2\">Student Body Statistics</div>\r\n</div>\r\n\r\n<ng-template ngFor let-enrollmentDateCount [ngForOf]=\"enrollmentDateCounts | async\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-2\">{{enrollmentDateCount.enrollmentDate | date:\"yyyy-MM-dd\"}}</div>\r\n\t\t<div class=\"col-md-2\">{{enrollmentDateCount.studentCount}}</div>\r\n\t</div>\r\n</ng-template>\r\n"
 
 /***/ }),
 
@@ -43,6 +43,7 @@ module.exports = module.exports.toString();
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_service__ = __webpack_require__("../../../../../src/app/about/about.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -54,22 +55,107 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var AboutComponent = (function () {
-    function AboutComponent() {
+    function AboutComponent(aboutService) {
+        this.aboutService = aboutService;
     }
-    AboutComponent.prototype.ngOnInit = function () { };
+    AboutComponent.prototype.ngOnInit = function () {
+        console.log('AboutComponent - ngOnInit - 1');
+        this.getEnrollmentDateCounts();
+        console.log('AboutComponent - ngOnInit - 2');
+    };
+    AboutComponent.prototype.getEnrollmentDateCounts = function () {
+        console.log('AboutComponent - getInstructors - 1');
+        this.enrollmentDateCounts = this.aboutService.getCountByEnrollmentDate();
+        console.log('AboutComponent - getInstructors - 2');
+    };
     AboutComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
             selector: 'app-about',
             template: __webpack_require__("../../../../../src/app/about/about.component.html"),
             styles: [__webpack_require__("../../../../../src/app/about/about.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__about_service__["a" /* AboutService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__about_service__["a" /* AboutService */]) === "function" && _a || Object])
     ], AboutComponent);
     return AboutComponent;
+    var _a;
 }());
 
 //# sourceMappingURL=about.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/about/about.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/add/operator/catch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_do__ = __webpack_require__("../../../../rxjs/add/operator/do.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_do__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_throw__ = __webpack_require__("../../../../rxjs/add/observable/throw.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_throw__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/add/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_of__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var AboutService = (function () {
+    function AboutService(http) {
+        this.http = http;
+        this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
+        this.relativeUrl = 'api/about'; // URL to web api
+        console.log('AboutService - constructor');
+    }
+    AboutService.prototype.getCountByEnrollmentDate = function () {
+        var _this = this;
+        console.log("AboutService -  getCountByEnrollmentDate - " + this.relativeUrl);
+        return this.http
+            .get(this.relativeUrl)
+            .map(function (res) { return _this.extractDataExtended(res); })
+            .do(function (data) { return console.log("CoursesService -  getCourses - data = " + JSON.stringify(data)); });
+    };
+    AboutService.prototype.extractDataExtended = function (res) {
+        console.log("AboutService - extractDataExtended - Response.status=" + res.status);
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error('Bad response status: ' + res.status);
+        }
+        var body = res.json ? res.json() : null;
+        console.log("AboutService - extractDataExtended - Response.body=" + body);
+        return (body || {});
+    };
+    AboutService.prototype.handleError = function (error) {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
+    };
+    AboutService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */]) === "function" && _a || Object])
+    ], AboutService);
+    return AboutService;
+    var _a;
+}());
+
+//# sourceMappingURL=about.service.js.map
 
 /***/ }),
 
@@ -186,7 +272,7 @@ var AppComponent = (function () {
     }
     AppComponent.prototype.ngOnInit = function () { };
     AppComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
@@ -213,22 +299,24 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__progress_kendo_angular_inputs__ = __webpack_require__("../../../../@progress/kendo-angular-inputs/dist/es/main.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__progress_kendo_angular_buttons__ = __webpack_require__("../../../../@progress/kendo-angular-buttons/dist/es/main.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__progress_kendo_angular_label__ = __webpack_require__("../../../../@progress/kendo-angular-label/dist/es/main.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__footer_footer_component__ = __webpack_require__("../../../../../src/app/footer/footer.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__navigation_navigation_component__ = __webpack_require__("../../../../../src/app/navigation/navigation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__about_about_component__ = __webpack_require__("../../../../../src/app/about/about.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__page_not_found_page_not_found_component__ = __webpack_require__("../../../../../src/app/page-not-found/page-not-found.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__students_students_component__ = __webpack_require__("../../../../../src/app/students/students.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__courses_courses_component__ = __webpack_require__("../../../../../src/app/courses/courses.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__instructors_instructors_component__ = __webpack_require__("../../../../../src/app/instructors/instructors.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__departments_departments_component__ = __webpack_require__("../../../../../src/app/departments/departments.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__contact_contact_component__ = __webpack_require__("../../../../../src/app/contact/contact.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__students_students_service__ = __webpack_require__("../../../../../src/app/students/students.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__instructors_instructors_service__ = __webpack_require__("../../../../../src/app/instructors/instructors.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__courses_courses_service__ = __webpack_require__("../../../../../src/app/courses/courses.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__departments_departments_service__ = __webpack_require__("../../../../../src/app/departments/departments.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__progress_kendo_angular_grid__ = __webpack_require__("../../../../@progress/kendo-angular-grid/dist/es/main.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__footer_footer_component__ = __webpack_require__("../../../../../src/app/footer/footer.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__navigation_navigation_component__ = __webpack_require__("../../../../../src/app/navigation/navigation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__about_about_component__ = __webpack_require__("../../../../../src/app/about/about.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__page_not_found_page_not_found_component__ = __webpack_require__("../../../../../src/app/page-not-found/page-not-found.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__students_students_component__ = __webpack_require__("../../../../../src/app/students/students.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__courses_courses_component__ = __webpack_require__("../../../../../src/app/courses/courses.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__instructors_instructors_component__ = __webpack_require__("../../../../../src/app/instructors/instructors.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__departments_departments_component__ = __webpack_require__("../../../../../src/app/departments/departments.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__contact_contact_component__ = __webpack_require__("../../../../../src/app/contact/contact.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__students_students_service__ = __webpack_require__("../../../../../src/app/students/students.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__instructors_instructors_service__ = __webpack_require__("../../../../../src/app/instructors/instructors.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__courses_courses_service__ = __webpack_require__("../../../../../src/app/courses/courses.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__departments_departments_service__ = __webpack_require__("../../../../../src/app/departments/departments.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__about_about_service__ = __webpack_require__("../../../../../src/app/about/about.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -261,23 +349,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["b" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__footer_footer_component__["a" /* FooterComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__navigation_navigation_component__["a" /* NavigationComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_14__about_about_component__["a" /* AboutComponent */],
-                __WEBPACK_IMPORTED_MODULE_15__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */],
-                __WEBPACK_IMPORTED_MODULE_19__departments_departments_component__["a" /* DepartmentsComponent */],
-                __WEBPACK_IMPORTED_MODULE_16__students_students_component__["a" /* StudentsComponent */],
-                __WEBPACK_IMPORTED_MODULE_17__courses_courses_component__["a" /* CoursesComponent */],
-                __WEBPACK_IMPORTED_MODULE_18__instructors_instructors_component__["a" /* InstructorsComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__contact_contact_component__["a" /* ContactComponent */]
+                __WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__footer_footer_component__["a" /* FooterComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__navigation_navigation_component__["a" /* NavigationComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__home_home_component__["a" /* HomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_15__about_about_component__["a" /* AboutComponent */],
+                __WEBPACK_IMPORTED_MODULE_16__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */],
+                __WEBPACK_IMPORTED_MODULE_20__departments_departments_component__["a" /* DepartmentsComponent */],
+                __WEBPACK_IMPORTED_MODULE_17__students_students_component__["a" /* StudentsComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__courses_courses_component__["a" /* CoursesComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__instructors_instructors_component__["a" /* InstructorsComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__contact_contact_component__["a" /* ContactComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -288,15 +378,17 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_6__progress_kendo_angular_inputs__["a" /* InputsModule */],
                 __WEBPACK_IMPORTED_MODULE_7__progress_kendo_angular_buttons__["a" /* ButtonsModule */],
                 __WEBPACK_IMPORTED_MODULE_8__progress_kendo_angular_label__["a" /* LabelModule */],
-                __WEBPACK_IMPORTED_MODULE_9__app_routing_module__["a" /* AppRoutingModule */]
+                __WEBPACK_IMPORTED_MODULE_9__progress_kendo_angular_grid__["a" /* GridModule */],
+                __WEBPACK_IMPORTED_MODULE_10__app_routing_module__["a" /* AppRoutingModule */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_24__departments_departments_service__["a" /* DepartmentsService */],
-                __WEBPACK_IMPORTED_MODULE_21__students_students_service__["a" /* StudentsService */],
-                __WEBPACK_IMPORTED_MODULE_22__instructors_instructors_service__["a" /* InstructorsService */],
-                __WEBPACK_IMPORTED_MODULE_23__courses_courses_service__["a" /* CoursesService */]
+                __WEBPACK_IMPORTED_MODULE_25__departments_departments_service__["a" /* DepartmentsService */],
+                __WEBPACK_IMPORTED_MODULE_22__students_students_service__["a" /* StudentsService */],
+                __WEBPACK_IMPORTED_MODULE_23__instructors_instructors_service__["a" /* InstructorsService */],
+                __WEBPACK_IMPORTED_MODULE_24__courses_courses_service__["a" /* CoursesService */],
+                __WEBPACK_IMPORTED_MODULE_26__about_about_service__["a" /* AboutService */]
             ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* AppComponent */]]
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
@@ -353,7 +445,7 @@ var ContactComponent = (function () {
     ContactComponent.prototype.ngOnInit = function () {
     };
     ContactComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
             selector: 'app-contact',
             template: __webpack_require__("../../../../../src/app/contact/contact.component.html"),
             styles: [__webpack_require__("../../../../../src/app/contact/contact.component.css")]
@@ -437,7 +529,7 @@ var CoursesComponent = (function () {
         return '(none)';
     };
     CoursesComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
             selector: 'app-courses',
             template: __webpack_require__("../../../../../src/app/courses/courses.component.html"),
             styles: [__webpack_require__("../../../../../src/app/courses/courses.component.css")]
@@ -595,7 +687,7 @@ var DepartmentsComponent = (function () {
         return '(none)';
     };
     DepartmentsComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
             selector: 'app-departments',
             template: __webpack_require__("../../../../../src/app/departments/departments.component.html"),
             styles: [__webpack_require__("../../../../../src/app/departments/departments.component.css")]
@@ -722,10 +814,10 @@ var FooterComponent = (function () {
     function FooterComponent() {
     }
     FooterComponent.prototype.ngOnInit = function () {
-        this.angularVersion = __WEBPACK_IMPORTED_MODULE_0__angular_core__["_24" /* VERSION */].full;
+        this.angularVersion = __WEBPACK_IMPORTED_MODULE_0__angular_core__["_25" /* VERSION */].full;
     };
     FooterComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
             selector: 'app-footer',
             template: __webpack_require__("../../../../../src/app/footer/footer.component.html"),
             styles: [__webpack_require__("../../../../../src/app/footer/footer.component.css")]
@@ -786,7 +878,7 @@ var HomeComponent = (function () {
     HomeComponent.prototype.ngOnInit = function () {
     };
     HomeComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
             selector: 'app-home',
             template: __webpack_require__("../../../../../src/app/home/home.component.html"),
             styles: [__webpack_require__("../../../../../src/app/home/home.component.css")]
@@ -870,7 +962,7 @@ var InstructorsComponent = (function () {
         return '(none)';
     };
     InstructorsComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
             selector: 'app-instructors',
             template: __webpack_require__("../../../../../src/app/instructors/instructors.component.html"),
             styles: [__webpack_require__("../../../../../src/app/instructors/instructors.component.css")]
@@ -1005,7 +1097,7 @@ var NavigationComponent = (function () {
     NavigationComponent.prototype.ngOnInit = function () {
     };
     NavigationComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
             selector: 'app-navigation',
             template: __webpack_require__("../../../../../src/app/navigation/navigation.component.html"),
             styles: [__webpack_require__("../../../../../src/app/navigation/navigation.component.css")]
@@ -1066,7 +1158,7 @@ var PageNotFoundComponent = (function () {
     PageNotFoundComponent.prototype.ngOnInit = function () {
     };
     PageNotFoundComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
             selector: 'app-page-not-found',
             template: __webpack_require__("../../../../../src/app/page-not-found/page-not-found.component.html"),
             styles: [__webpack_require__("../../../../../src/app/page-not-found/page-not-found.component.css")]
@@ -1139,7 +1231,7 @@ var StudentsComponent = (function () {
         //console.log('StudentsComponent - getStudents - 2');
     };
     StudentsComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
             selector: 'app-students',
             template: __webpack_require__("../../../../../src/app/students/students.component.html"),
             styles: [__webpack_require__("../../../../../src/app/students/students.component.css")]

@@ -30,8 +30,9 @@ namespace ContosoUniversityAngular.Database
         public DbSet<Person> People { get; set; }
 		
 		public DbSet<DepartmentSummaryView> DepartmentSummaryView { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+		public DbSet<StudentCountByEnrollmentDateView> StudentCountByEnrollmentDateView { get; set; }
+		
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Course>().ToTable("Course");
             modelBuilder.Entity<Enrollment>().ToTable("Enrollment");

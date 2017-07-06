@@ -38,6 +38,8 @@ namespace ContosoUniversityAngular.Controllers
 			                     .ToListAsync();
 	    }
 
+
+
 		// GET: api/Departments/5
 		[HttpGet("{id}")]
         public async Task<IActionResult> GetDepartment([FromRoute] int id)
