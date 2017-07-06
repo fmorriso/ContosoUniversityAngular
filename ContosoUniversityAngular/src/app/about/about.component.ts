@@ -13,7 +13,7 @@ export class AboutComponent implements OnInit {
 
 	enrollmentDateCounts: Observable<StudentCountByEnrollmentDateView[]>
 
-	constructor(private aboutService: AboutService) {}
+	constructor(public aboutService: AboutService) {}
 
 	ngOnInit() {
 		console.log('AboutComponent - ngOnInit - 1');
@@ -22,9 +22,9 @@ export class AboutComponent implements OnInit {
 	}
 
 	getEnrollmentDateCounts() {
-		console.log('AboutComponent - getInstructors - 1');
+		console.log('AboutComponent - getCountByEnrollmentDate - 1');
 		this.enrollmentDateCounts = this.aboutService.getCountByEnrollmentDate();
-		console.log('AboutComponent - getInstructors - 2');
+		console.log('AboutComponent - getCountByEnrollmentDate - 2');
 	}
 
 }

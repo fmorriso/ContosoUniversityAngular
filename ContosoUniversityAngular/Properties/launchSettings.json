@@ -19,7 +19,7 @@
     "ContosoUniversityAngular": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/departments",
+      "launchUrl": "api/home",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

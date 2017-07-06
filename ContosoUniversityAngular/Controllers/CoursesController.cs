@@ -10,48 +10,48 @@ using ContosoUniversityAngular.Models;
 namespace ContosoUniversityAngular.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Courses")]
     public class CoursesController : BaseController
     {
         public CoursesController(SchoolContext context) : base(context)
         {
         }
 
-		// GET: api/Courses
-#if GET_ASYNC
-		[HttpGet]
-		public async Task<IEnumerable<Course>> GetCoursesAsync()
-		{
-			return await _context.Courses
-								 .Include(i => i.Department)
-								 .OrderBy(column => column.Title)
-								 .AsNoTracking()
-								 .ToListAsync();
-		} 
-#endif
-
-		[HttpGet]
-	    public IEnumerable<Course> GetCourses()
+		// GET: api/Courses		
+		/// <summary>
+		/// Gets a list of courses
+		/// </summary>
+		/// <example>
+		/// http://localhost:4200/api/courses/list
+		/// </example>
+		/// <returns></returns>
+		[HttpGet("api/[controller]/[action]")]
+		public async Task<IEnumerable<Course>> List()
 	    {
-			return  _context.Courses
-				.Include(i => i.Department)
-				.OrderBy(column => column.Title)
-				.AsNoTracking()
-				.ToList();
+			return await _context.Courses
+				                 .Include(i => i.Department)
+				                 .OrderBy(column => column.Title)
+				                 .AsNoTracking()
+				                 .ToListAsync();
 		}
 
-        // GET: api/Courses/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetCourse([FromRoute] int id)
+		/// <summary>
+		/// Gets a single course by its id
+		/// </summary>
+		/// <example>
+		/// http://localhost:4200/api/courses/4041
+		/// </example>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		[HttpGet("api/[controller]/{id:int}")]
+		public async Task<IActionResult> Course([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var course = await _context.Courses.SingleOrDefaultAsync(m => m.CourseID == id);
-
-            if (course == null)
+	        var course = await _context.Courses.FindAsync(id);
+			if (course == null)
             {
                 return NotFound();
             }
@@ -60,7 +60,7 @@ namespace ContosoUniversityAngular.Controllers
         }
 
         // PUT: api/Courses/5
-        [HttpPut("{id}")]
+        [HttpPut("api/[controller]/{id:int}")]
         public async Task<IActionResult> PutCourse([FromRoute] int id, [FromBody] Course course)
         {
             if (!ModelState.IsValid)
@@ -74,7 +74,6 @@ namespace ContosoUniversityAngular.Controllers
             }
 
             _context.Entry(course).State = EntityState.Modified;
-
             try
             {
                 await _context.SaveChangesAsync();
@@ -95,8 +94,8 @@ namespace ContosoUniversityAngular.Controllers
         }
 
         // POST: api/Courses
-        [HttpPost]
-        public async Task<IActionResult> PostCourse([FromBody] Course course)
+        [HttpPost("api/[controller]")]
+		public async Task<IActionResult> PostCourse([FromBody] Course course)
         {
             if (!ModelState.IsValid)
             {
@@ -124,7 +123,7 @@ namespace ContosoUniversityAngular.Controllers
         }
 
         // DELETE: api/Courses/5
-        [HttpDelete("{id}")]
+        [HttpDelete("api/[controller]/{id:int}")]
         public async Task<IActionResult> DeleteCourse([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -132,7 +131,7 @@ namespace ContosoUniversityAngular.Controllers
                 return BadRequest(ModelState);
             }
 
-            var course = await _context.Courses.SingleOrDefaultAsync(m => m.CourseID == id);
+	        var course = await _context.Courses.FindAsync(id);
             if (course == null)
             {
                 return NotFound();

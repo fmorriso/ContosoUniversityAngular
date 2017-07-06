@@ -37,7 +37,7 @@ namespace ContosoUniversityAngular.Database
             modelBuilder.Entity<Course>().ToTable("Course");
             modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
             modelBuilder.Entity<Student>().ToTable("Student");
-            modelBuilder.Entity<Department>().ToTable("Department");
+            modelBuilder.Entity<Department>().ToTable("Department").HasKey(k => k.DepartmentID);
             modelBuilder.Entity<Instructor>().ToTable("Instructor");
             modelBuilder.Entity<OfficeAssignment>().ToTable("OfficeAssignment");
             modelBuilder.Entity<CourseAssignment>().ToTable("CourseAssignment");

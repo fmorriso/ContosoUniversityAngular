@@ -21,11 +21,12 @@ export class AboutService {
 	}
 
 	getCountByEnrollmentDate(): Observable<StudentCountByEnrollmentDateView[]> {
-		console.log(`AboutService -  getCountByEnrollmentDate - ${this.relativeUrl}`);
+		const url: string = `${this.relativeUrl}/summary`
+		console.log(`AboutService -  getCountByEnrollmentDate - ${url}`);
 		return <Observable<StudentCountByEnrollmentDateView[]>>this.http
-			.get(this.relativeUrl)
+			.get(url)
 			.map((res: Response) => this.extractDataExtended<StudentCountByEnrollmentDateView[]>(res))
-			.do(data => console.log(`CoursesService -  getCourses - data = ${JSON.stringify(data)}`))
+			.do(data => console.log(`AboutService -  getCourses - data = ${JSON.stringify(data)}`))
 			;
 	}
 

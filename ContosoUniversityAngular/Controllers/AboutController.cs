@@ -9,15 +9,15 @@ using Microsoft.EntityFrameworkCore;
 namespace ContosoUniversityAngular.Controllers
 {
 	[Produces("application/json")]
-	[Route("api/About")]
 	public class AboutController : BaseController
 	{
 		public AboutController(SchoolContext context) : base(context)
 		{
 		}
 
-		[HttpGet]
-		public async Task<IEnumerable<StudentCountByEnrollmentDateView>> GetCountByEnrollmentDate()
+		// https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing
+		[HttpGet("api/[controller]/[action]")]
+		public async Task<IEnumerable<StudentCountByEnrollmentDateView>> Summary()
 		{
 			return await _context.StudentCountByEnrollmentDateView
 				                 .OrderBy(column => column.EnrollmentDate)

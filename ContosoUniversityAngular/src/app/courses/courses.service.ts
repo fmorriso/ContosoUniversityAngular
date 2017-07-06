@@ -20,12 +20,32 @@ export class CoursesService {
 		console.log('CoursesService - constructor');
 	}
 
+	/*
+		[HttpGet("api/[controller]/[action]")]
+		public IEnumerable<Course> List()
+	*/
 	getCourses(): Observable<Course[]> {
-		console.log(`CoursesService -  getCourses - ${this.relativeUrl}`);
+		const url: string = `${this.relativeUrl}/list`
+		console.log(`CoursesService -  getCourses - ${url}`);
 		return <Observable<Course[]>>this.http
-			.get(this.relativeUrl)
+			.get(url)
 			.map((res: Response) => this.extractDataExtended<Course[]>(res))
 			.do(data => console.log(`CoursesService -  getCourses - data = ${JSON.stringify(data)}`))
+			;
+	}
+
+	/*
+		HttpGet("api/[controller]/[action]/{id:int}")]
+		public async Task<IActionResult> Course([FromRoute] int id)
+	    http://localhost:4200/api/courses/course/4041
+	*/
+	getCourse(id: number): Observable<Course> {
+		const url: string = `${this.relativeUrl}/course/${id}`
+		console.log(`CoursesService -  getCourse - ${url}`);
+		return <Observable<Course>>this.http
+			.get(url)
+			.map((res: Response) => this.extractDataExtended<Course>(res))
+			.do(data => console.log(`CoursesService -  getCourse - data = ${JSON.stringify(data)}`))
 			;
 	}
 

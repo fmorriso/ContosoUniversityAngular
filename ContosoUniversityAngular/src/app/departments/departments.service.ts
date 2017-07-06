@@ -22,9 +22,10 @@ export class DepartmentsService {
 	}
 
 	public getDepartments(): Observable<DepartmentSummaryView[]> {
-		console.log(`DepartmentsService - getDepartments - ${this.relativeUrl}`);
+		const url: string = `${this.relativeUrl}/list`
+		console.log(`DepartmentsService -  getDepartments - ${url}`);
 		return <Observable<DepartmentSummaryView[]>>this.http
-			.get(this.relativeUrl)
+			.get(url)
 			.map((response: Response) => response.json() as DepartmentSummaryView[])
 			.catch(this.handleError)
 			.do(data => console.log(`DepartmentsService - getDepartments.do - data=${JSON.stringify(data)}`))

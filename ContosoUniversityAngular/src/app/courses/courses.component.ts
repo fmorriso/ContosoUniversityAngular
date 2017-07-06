@@ -14,7 +14,7 @@ export class CoursesComponent implements OnInit {
 
 	courses: Observable<Course[]>;
 
-	constructor(private coursesService: CoursesService) {
+	constructor(public coursesService: CoursesService) {
 		 console.log('CoursesComponent - constructor');
 	}
 

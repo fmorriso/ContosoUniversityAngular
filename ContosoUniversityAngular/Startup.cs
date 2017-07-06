@@ -49,8 +49,8 @@ namespace ContosoUnivserityAngular
             app.UseDefaultFiles();
             app.UseStaticFiles();
 			// https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing
-			app.UseMvc();
-	        //app.UseMvcWithDefaultRoute();
+			//app.UseMvc();
+	        app.UseMvcWithDefaultRoute();
             DbInitializer.Initialize(context);
         }
     }

@@ -9,28 +9,21 @@ using ContosoUniversityAngular.Models;
 namespace ContosoUniversityAngular.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Departments")]
     public class DepartmentsController : BaseController
     {
         public DepartmentsController(SchoolContext context): base(context)
         {}
 
-		// GET: api/Departments
-#if GET_ASYNC
-		[HttpGet]
-		public async Task<IEnumerable<Department>> GetDepartmentsAsync()
-		{
-			return await _context.Departments
-								 //.Include(d => d.Administrator)
-								 //.Include(c => c.Courses)
-								 .OrderBy(column => column.Name)
-								 .AsNoTracking()
-								 .ToListAsync();
-		} 
-#endif
-
-		[HttpGet]
-	    public async Task<IEnumerable<DepartmentSummaryView>> GetDepartments()
+		/// <summary>
+		/// Gets a list of departments "flattened" so they are suitable for displaying
+		/// in some type of table, list or grid control by the UI.
+		/// </summary>
+		/// <example>
+		/// http://localhost:4200/api/departments/list
+		/// </example>
+		/// <returns></returns>
+		[HttpGet("api/[controller]/[action]")]
+		public async Task<IEnumerable<DepartmentSummaryView>> List()
 	    {
 		    return await _context.DepartmentSummaryView
 			                     .OrderBy(column => column.Name)
@@ -38,19 +31,16 @@ namespace ContosoUniversityAngular.Controllers
 			                     .ToListAsync();
 	    }
 
-
-
 		// GET: api/Departments/5
-		[HttpGet("{id}")]
-        public async Task<IActionResult> GetDepartment([FromRoute] int id)
+		[HttpGet("api/[controller]/{id:int}")]
+        public async Task<IActionResult> Department([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var department = await _context.Departments.SingleOrDefaultAsync(m => m.DepartmentID == id);
-
+	        var department = await _context.Departments.FindAsync(id);
             if (department == null)
             {
                 return NotFound();
