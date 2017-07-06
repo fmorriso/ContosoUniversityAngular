@@ -10,27 +10,27 @@ import { InstructorsService } from './instructors.service';
 	styleUrls: ['./instructors.component.css']
 })
 export class InstructorsComponent implements OnInit {
-
+	private compName: string = 'InstructorsComponent';
 	instructors: Observable<Instructor[]>;
 
-	constructor(private instructorsService: InstructorsService) {
-		console.log('InstructorsComponent - constructor');
+	constructor(public instructorsService: InstructorsService) {
+		console.log(`${this.compName} - constructor`);
 	}
 
 	ngOnInit() {
-		console.log('InstructorsComponent - ngOnInit - 1');
+		console.log(`${this.compName} - ngOnInit - 1`);
 		this.getInstructors();
-		console.log('InstructorsComponent - ngOnInit - 2');
+		console.log(`${this.compName} - ngOnInit - 2`);
 	}
 
 	getInstructors() {
-		console.log('InstructorsComponent - getInstructors - 1');
+		console.log(`${this.compName} - getInstructors - 1`);
 		this.instructors = this.instructorsService.getInstructors();
-		console.log('InstructorsComponent - getInstructors - 2');
+		console.log(`${this.compName} - getInstructors - 2`);
 	}
 
 	public getOfficeLocation(instructor: Instructor): string {
-		console.log(`InstructorsComponent - getOfficeLocation - ${JSON.stringify(instructor)}`);
+		console.log(`${this.compName} - getOfficeLocation - ${JSON.stringify(instructor)}`);
 		if (instructor) {
 			if (instructor.officeAssignment) {
 				if (instructor.officeAssignment.location) {

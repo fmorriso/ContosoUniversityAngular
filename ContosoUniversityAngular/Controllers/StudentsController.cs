@@ -9,15 +9,22 @@ using ContosoUniversityAngular.Models;
 namespace ContosoUniversityAngular.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Students")]
+    //[Route("api/Students")]
     public class StudentsController : BaseController
     {
         public StudentsController(SchoolContext context) : base(context)
         {}
 
-        // GET: api/Students
-        [HttpGet]
-        public async Task<IEnumerable<Student>> GetStudents()
+	    /// <summary>
+	    /// Gets a list of students that are suitable for displaying
+	    /// in some type of table, list or grid control by the UI.
+	    /// </summary>
+	    /// <example>
+	    /// http://localhost:4200/api/students/list
+	    /// </example>
+	    /// <returns></returns>
+	    [HttpGet("api/[controller]/[action]")]
+		public async Task<IEnumerable<Student>> List()
         {
             return await _context.Students
                                  .OrderBy(column => column.LastName)
@@ -27,7 +34,7 @@ namespace ContosoUniversityAngular.Controllers
         }
 
         // GET: api/Students/5
-        [HttpGet("{id}")]
+        [HttpGet("api/[controller]/{id:int}")]
         public async Task<IActionResult> GetStudent([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -35,9 +42,7 @@ namespace ContosoUniversityAngular.Controllers
                 return BadRequest(ModelState);
             }
 
-            var student = await _context.Students
-                                        .FindAsync(id);
-
+            var student = await _context.Students.FindAsync(id);
             if (student == null)
             {
                 return NotFound();
@@ -47,7 +52,7 @@ namespace ContosoUniversityAngular.Controllers
         }
 
         // PUT: api/Students/5
-        [HttpPut("{id}")]
+        [HttpPut("api/[controller]/{id:int}")]
         public async Task<IActionResult> PutStudent([FromRoute] int id, [FromBody] Student student)
         {
             if (!ModelState.IsValid)
@@ -82,8 +87,8 @@ namespace ContosoUniversityAngular.Controllers
         }
 
         // POST: api/Students
-        [HttpPost]
-        public async Task<IActionResult> PostStudent([FromBody] Student student)
+        [HttpPost("api/[controller]")]
+        public async Task<IActionResult> AddStudent([FromBody] Student student)
         {
             if (!ModelState.IsValid)
             {
@@ -97,7 +102,7 @@ namespace ContosoUniversityAngular.Controllers
         }
 
         // DELETE: api/Students/5
-        [HttpDelete("{id}")]
+        [HttpDelete("api/[controller]/{id}")]
         public async Task<IActionResult> DeleteStudent([FromRoute] int id)
         {
             if (!ModelState.IsValid)

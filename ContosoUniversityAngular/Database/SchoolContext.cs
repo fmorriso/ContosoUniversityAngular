@@ -7,6 +7,7 @@ namespace ContosoUniversityAngular.Database
     {
         public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
         {
+			
         }
 
 #if USE_NO_POWERSHELL_CMDLETS
@@ -49,6 +50,7 @@ namespace ContosoUniversityAngular.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+			//optionsBuilder.ReplaceService<>()
             base.OnConfiguring(optionsBuilder);
             //TODO: optionsBuilder.UseLoggerFactory(_loggerFactory);
         }

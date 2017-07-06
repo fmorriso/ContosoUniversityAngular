@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using ContosoUniversityAngular.Database;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System;
 
 namespace ContosoUnivserityAngular
 {
@@ -35,7 +36,17 @@ namespace ContosoUnivserityAngular
 
 			// Add framework services.
 			var connectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<SchoolContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<SchoolContext>(options =>
+            {
+	            options.UseSqlServer(connectionString,
+		            sqlServerOptionsAction: sqlOptions =>
+		            {
+			            sqlOptions.EnableRetryOnFailure(maxRetryCount: 5,
+				            maxRetryDelay: TimeSpan.FromSeconds(45),
+				            errorNumbersToAdd: null);
+		            });
+            });
+
             services.AddMvc();
 			
 		}
