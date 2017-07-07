@@ -2,20 +2,24 @@
 	<div class="col-md-12 text-center h2">Student Body Statistics</div>
 </div>
 
-<!--
 <ng-template ngFor let-enrollmentDateCount [ngForOf]="enrollmentDateCounts | async">
 	<div class="row">
 		<div class="col-md-2">{{enrollmentDateCount.enrollmentDate | date:"yyyy-MM-dd"}}</div>
 		<div class="col-md-2">{{enrollmentDateCount.studentCount}}</div>
 	</div>
 </ng-template>
--->
 
-<kendo-grid [data]="enrollmentDateCounts | async"
+<br/>
+
+<kendo-grid [data]="gridView"
+            [sortable]="true"
+            [sort]="sort"
+            (sortChange)="sortChange($event)"
 			>
 	<kendo-grid-column field="enrollmentDate"
 	                   title="Enrollment Date"
-					   width="75%">
+	                   width="75%"
+					   >
 		<ng-template kendoGridCellTemplate let-item>
 			{{item.enrollmentDate | date:"yyyy-MM-dd"}}
 		</ng-template>
@@ -24,7 +28,7 @@
 	                   title="Students"
 	                   [headerClass]="text-right"
 					   [headerStyle]="{'text-align': 'right'}"
-	                   class="text-right"
+	                   [class]="text-right"
 					   [style]="{'text-align': 'right'}"
 					   width="25%">
 	</kendo-grid-column>
