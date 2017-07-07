@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -12,34 +13,25 @@ import { StudentCountByEnrollmentDateView } from '../models/StudentCountByEnroll
 import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 
 @Injectable()
-export class AboutService {
+export class AboutService  {
 
 	private compName: string = 'AboutService';
 	private headers = new Headers({ 'Content-Type': 'application/json' });
 	private relativeUrl = 'api/about';  // URL to web api
 
 	constructor(private http: Http) {
-		console.log('AboutService - constructor');
+		console.log(`${this.compName} - constructor`);
 	}
-
+	
 	// http://www.telerik.com/kendo-angular-ui/components/grid/sorting/
-	getGridData() {
-		const url: string = `${this.relativeUrl}/summary`
-		console.log(`${this.compName} -  getGridData - ${url}`);
-		return this.http
-			.get(url)
-			.map((res: Response) => this.extractDataExtended<any[]>(res))
-			.do(data => console.log(`${this.compName} -  getGridData - data = ${JSON.stringify(data)}`))
-			;
-	}
-
-	getCountByEnrollmentDate(): Observable<StudentCountByEnrollmentDateView[]> {
+	// http://www.telerik.com/kendo-angular-ui/components/grid/data-binding/automatic-operations/
+	getGridData(): Observable<StudentCountByEnrollmentDateView[]> {
 		const url: string = `${this.relativeUrl}/summary`
 		console.log(`${this.compName} -  getCountByEnrollmentDate - ${url}`);
 		return <Observable<StudentCountByEnrollmentDateView[]>>this.http
 			.get(url)
 			.map((res: Response) => this.extractDataExtended<StudentCountByEnrollmentDateView[]>(res))
-			.do(data => console.log(`${this.compName} -  getCountByEnrollmentDate - data = ${JSON.stringify(data)}`))
+			.do(data => console.log(`${this.compName} -  getGridData - data = ${JSON.stringify(data)}`))
 			;
 	}
 
