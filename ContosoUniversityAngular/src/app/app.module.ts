@@ -27,6 +27,7 @@ import { InstructorsService } from './instructors/instructors.service';
 import { CoursesService } from './courses/courses.service';
 import { DepartmentsService } from './departments/departments.service';
 import { AboutService } from './about/about.service';
+import { AboutGridDataBindingDirective } from './about/about-grid-data-binding.directive';
 
 @NgModule({
 	declarations: [
@@ -40,7 +41,8 @@ import { AboutService } from './about/about.service';
 		StudentsComponent,
 		CoursesComponent,
 		InstructorsComponent,
-		ContactComponent
+		ContactComponent,
+		AboutGridDataBindingDirective
 	],
 	imports: [
 		BrowserModule,

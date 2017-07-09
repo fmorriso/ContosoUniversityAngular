@@ -2,13 +2,28 @@
 	<div class="col-md-12 text-center h2">Student Body Statistics</div>
 </div>
 
-<!--http://www.telerik.com/kendo-angular-ui/components/-->
-<kendo-grid [kendoGridBinding]="gridData"
-            [pageSize]="10"
-            [pageable]="true"
-            [sortable]="true"
-            [filterable]="true"
-            [groupable]="true">
+
+<!-- http://www.telerik.com/kendo-angular-ui/components/grid/data-binding/automatic-operations/ -->
+<!-- Custom Remote Directives -->
+<!--
+<kendo-grid 
+	productsBinding
+	[pageSize]="10"
+	[pageable]="true"
+	[sortable]="true"
+	[height]="270">
+	<kendo-grid-column field="ProductID" width="80"></kendo-grid-column>
+	<kendo-grid-column field="ProductName"></kendo-grid-column>
+	<kendo-grid-column field="UnitPrice" width="80" format="{0:c}"></kendo-grid-column>
+	<kendo-grid-column field="UnitsInStock" width="80"></kendo-grid-column>
+</kendo-grid>
+-->
+<!-- <kendo-grid [kendoGridBinding]="gridData" - this works, but custom binding directive does not -->
+<kendo-grid aboutGridDataBinding
+			[pageSize]="10"
+			[pageable]="true"
+			[sortable]="true"
+			[height]="270">
 	<kendo-grid-column field="enrollmentDate"
 					   title="Enrollment Date"
 					   width="75%">
