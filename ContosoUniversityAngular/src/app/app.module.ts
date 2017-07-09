@@ -29,6 +29,7 @@ import { DepartmentsService } from './departments/departments.service';
 import { AboutService } from './about/about.service';
 import { AboutGridDataBindingDirective } from './about/about-grid-data-binding.directive';
 import { GridExampleComponent } from './grid-example/grid-example.component';
+import { GridExampleService } from './grid-example/grid-example.service';
 
 @NgModule({
 	declarations: [
@@ -63,7 +64,8 @@ import { GridExampleComponent } from './grid-example/grid-example.component';
 		StudentsService,
 		InstructorsService,
 		CoursesService,
-		AboutService
+		AboutService,
+		GridExampleService
 	],
 	bootstrap: [AppComponent]
 })
