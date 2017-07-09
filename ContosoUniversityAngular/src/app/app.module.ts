@@ -30,6 +30,7 @@ import { AboutService } from './about/about.service';
 import { AboutGridDataBindingDirective } from './about/about-grid-data-binding.directive';
 import { GridExampleComponent } from './grid-example/grid-example.component';
 import { GridExampleService } from './grid-example/grid-example.service';
+import { GridCustomBindingDirective } from './grid-example/grid-custom-binding.directive';
 
 @NgModule({
 	declarations: [
@@ -45,7 +46,8 @@ import { GridExampleService } from './grid-example/grid-example.service';
 		InstructorsComponent,
 		ContactComponent,
 		AboutGridDataBindingDirective,
-		GridExampleComponent
+		GridExampleComponent,
+		GridCustomBindingDirective
 	],
 	imports: [
 		BrowserModule,
