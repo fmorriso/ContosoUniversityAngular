@@ -28,6 +28,7 @@ import { CoursesService } from './courses/courses.service';
 import { DepartmentsService } from './departments/departments.service';
 import { AboutService } from './about/about.service';
 import { AboutGridDataBindingDirective } from './about/about-grid-data-binding.directive';
+import { GridExampleComponent } from './grid-example/grid-example.component';
 
 @NgModule({
 	declarations: [
@@ -42,7 +43,8 @@ import { AboutGridDataBindingDirective } from './about/about-grid-data-binding.d
 		CoursesComponent,
 		InstructorsComponent,
 		ContactComponent,
-		AboutGridDataBindingDirective
+		AboutGridDataBindingDirective,
+		GridExampleComponent
 	],
 	imports: [
 		BrowserModule,

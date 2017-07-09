@@ -9,10 +9,12 @@ import { CoursesComponent }      from './courses/courses.component';
 import { InstructorsComponent }  from './instructors/instructors.component';
 import { DepartmentsComponent }  from './departments/departments.component';
 import { ContactComponent }      from './contact/contact.component';
+import { GridExampleComponent }  from './grid-example/grid-example.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'grid', component: GridExampleComponent },
   { path: 'students', component: StudentsComponent },
   { path: 'courses', component: CoursesComponent },
   { path: 'instructors', component: InstructorsComponent },
