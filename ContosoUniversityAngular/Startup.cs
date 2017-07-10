@@ -8,6 +8,9 @@ using ContosoUniversityAngular.Database;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.Net;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace ContosoUnivserityAngular
 {
@@ -57,12 +60,25 @@ namespace ContosoUnivserityAngular
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+			// https://medium.com/@levifuller/building-an-angular-application-with-asp-net-core-in-visual-studio-2017-visualized-f4b163830eaa
+			app.Use(async (httpContext, next) =>
+	        {
+		        await next();
+		        if (httpContext.Response.StatusCode == (int)HttpStatusCode.NotFound
+				 && !Path.HasExtension(httpContext.Request.Path.Value)
+				 && !httpContext.Request.Path.Value.StartsWith("/api/"))
+		        {
+			        httpContext.Request.Path = "/index.html";
+			        await next();
+		        }
+	        });
+
 			// https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing
-			//app.UseMvc();
 	        app.UseMvcWithDefaultRoute();
-            DbInitializer.Initialize(context);
+	        app.UseDefaultFiles();
+	        app.UseStaticFiles();
+
+			DbInitializer.Initialize(context);
         }
     }
 }

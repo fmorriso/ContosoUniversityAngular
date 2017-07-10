@@ -1,5 +1,6 @@
 ﻿<div class="container">
-  <app-navigation></app-navigation>
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
+	<span class="glyphicon glyphicon-refresh glyphicon-spin spinner" *ngIf="spinnerService.isLoading"></span>
+	<app-navigation></app-navigation>
+	<router-outlet></router-outlet>
+	<app-footer></app-footer>
 </div>

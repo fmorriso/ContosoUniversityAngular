@@ -31,6 +31,7 @@ import { AboutGridDataBindingDirective } from './about/about-grid-data-binding.d
 import { GridExampleComponent } from './grid-example/grid-example.component';
 import { GridExampleService } from './grid-example/grid-example.service';
 import { GridCustomBindingDirective } from './grid-example/grid-custom-binding.directive';
+import { SpinnerService } from './spinner.service';
 
 @NgModule({
 	declarations: [
@@ -67,7 +68,8 @@ import { GridCustomBindingDirective } from './grid-example/grid-custom-binding.d
 		InstructorsService,
 		CoursesService,
 		AboutService,
-		GridExampleService
+		GridExampleService,
+		SpinnerService
 	],
 	bootstrap: [AppComponent]
 })

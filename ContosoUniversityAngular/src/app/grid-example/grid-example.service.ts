@@ -21,6 +21,7 @@ import 'rxjs/add/observable/of';
 import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { toODataString } from '@progress/kendo-data-query';
 import { State } from '@progress/kendo-data-query';
+import { SpinnerService } from "app/spinner.service";
 
 //import { StudentCountByEnrollmentDateView } from '../models/StudentCountByEnrollmentDateView';
 // http://www.telerik.com/kendo-angular-ui/components/grid/data-binding/automatic-operations/
@@ -31,10 +32,11 @@ export class GridExampleService extends BehaviorSubject<GridDataResult> implemen
 	private BASE_URL: string = 'http://services.odata.org/V4/Northwind/Northwind.svc/';
 	private tableName: string;
 
-	constructor(private http: Http) {
+	constructor(private http: Http,
+		        private spinnerService: SpinnerService) {
 		super(null);
 		this.tableName = 'Products';
-		console.log(`${this.compName} - constructor`);
+		console.log(`${this.compName} - constructor - isLoading = ${this.spinnerService.isLoading}`);
 	}
 
 	//TODO: try to figure out why Angular 4.2.6 never calls this method
@@ -55,6 +57,9 @@ export class GridExampleService extends BehaviorSubject<GridDataResult> implemen
 		console.log(`${this.compName} - query - tableName=${tableName}, state=${JSON.stringify(state)}`);
 		const queryStr = `${toODataString(state)}&$count=true`;
 		console.log(`${this.compName} - query - queryStr=${queryStr}`);
+		
+		Promise.resolve(null).then(() => this.spinnerService.isLoading = true);
+		
 		return this.http
 			.get(`${this.BASE_URL}${tableName}?${queryStr}`)
 			.map(response => response.json())
@@ -62,7 +67,10 @@ export class GridExampleService extends BehaviorSubject<GridDataResult> implemen
 				data: response.value,
 				total: parseInt(response["@odata.count"], 10)
 			}))
-			.finally(() => console.log(`${this.compName} - query - finally`));
+			.finally(() => {
+				console.log(`${this.compName} - query - finally`);
+				Promise.resolve(null).then(() => this.spinnerService.isLoading = false);
+			});
 	}
 
 	public queryForCategory({ CategoryID }: { CategoryID: number }, state?: any): void {

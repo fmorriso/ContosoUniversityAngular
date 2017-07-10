@@ -3,6 +3,7 @@ import { DataBindingDirective, GridComponent, GridDataResult } from '@progress/k
 import { Subscription } from 'rxjs/Subscription';
 
 import { GridExampleService } from './grid-example.service';
+import { SpinnerService } from '../spinner.service';
 
 @Directive({
 	selector: '[gridCustomBinding]'
@@ -12,7 +13,9 @@ export class GridCustomBindingDirective extends DataBindingDirective implements 
 	private serviceSubscription: Subscription;
 	private compName: string = 'GridCustomBindingDirective';
 
-	constructor(private service: GridExampleService, grid: GridComponent) {
+	constructor(private service: GridExampleService,
+		grid: GridComponent,
+	    private spinnerService: SpinnerService) {
 		super(grid);
 		console.log(`${this.compName} - constructor`);
 	}
@@ -35,7 +38,9 @@ export class GridCustomBindingDirective extends DataBindingDirective implements 
 
 	public rebind(): void {
 		console.log(`${this.compName} - rebind - state=${JSON.stringify(this.state)}`);
+		//this.spinnerService.isLoading = true;
 		this.service.query(this.state);
+		//this.spinnerService.isLoading = false;
 	}
 
 }
