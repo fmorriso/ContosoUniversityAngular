@@ -1,11 +1,3 @@
-/*
-ERROR in Can't resolve all parameters for GridExampleService in C:/projects/ContosoUniversityAngular/ContosoUniversityAngular/src/app/grid-example/grid-example.service.ts: ([object Object], ?).
-ERROR in ./src/main.ts
-Module not found: Error: Can't resolve './$$_gendir/app/app.module.ngfactory' in 'C:\projects\ContosoUniversityAngular\ContosoUniversityAngular\src'
- @ ./src/main.ts 3:0-74
- @ multi ./src/main.ts
-Child html-webpack-plugin for "index.html":
-*/
 import { Injectable, OnInit } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 
@@ -23,7 +15,6 @@ import { toODataString } from '@progress/kendo-data-query';
 import { State } from '@progress/kendo-data-query';
 import { SpinnerService } from "app/spinner.service";
 
-//import { StudentCountByEnrollmentDateView } from '../models/StudentCountByEnrollmentDateView';
 // http://www.telerik.com/kendo-angular-ui/components/grid/data-binding/automatic-operations/
 @Injectable()
 export class GridExampleService extends BehaviorSubject<GridDataResult> implements OnInit {
