@@ -36,7 +36,7 @@ export class AboutGridDataBindingDirective extends DataBindingDirective implemen
 	*/
 	public ngOnInit(): void {
 		console.log(`${this.compName} - ngOnInit`);
-		let localResult: GridDataResult;
+		
 		//TODO: figure out why the returned GridDataResult is always{"data": {}, "total": 0}
 		//TODO: maybe this subscribe needs its 3 parts???
 		//TODO: maybe call the service a different way ???
