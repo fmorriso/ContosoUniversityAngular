@@ -38,9 +38,7 @@ export class GridCustomBindingDirective extends DataBindingDirective implements 
 
 	public rebind(): void {
 		console.log(`${this.compName} - rebind - state=${JSON.stringify(this.state)}`);
-		//this.spinnerService.isLoading = true;
 		this.service.query(this.state);
-		//this.spinnerService.isLoading = false;
 	}
 
 }
