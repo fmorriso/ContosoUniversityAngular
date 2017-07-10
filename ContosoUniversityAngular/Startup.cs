@@ -42,7 +42,7 @@ namespace ContosoUnivserityAngular
 		            sqlServerOptionsAction: sqlOptions =>
 		            {
 			            sqlOptions.EnableRetryOnFailure(maxRetryCount: 5,
-				            maxRetryDelay: TimeSpan.FromSeconds(45),
+				            maxRetryDelay: TimeSpan.FromSeconds(20),
 				            errorNumbersToAdd: null);
 		            });
             });

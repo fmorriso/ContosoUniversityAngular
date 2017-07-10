@@ -10,9 +10,12 @@ export class GridExampleComponent implements OnInit {
 
 	private compName: string = 'GridExampleComponent';
 
-	constructor(private service: GridExampleService) { }
+	constructor(private service: GridExampleService) {
+		console.log(`${this.compName} - constructor`);
+	}
 
 	ngOnInit() {
+		console.log(`${this.compName} - ngOnInit`);
 	}
 
 }
