@@ -8,7 +8,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/of';
 
-//import { Department } from '../models/department';
+// import { Department } from '../models/department';
 import { DepartmentSummaryView } from '../models/departmentSummaryView';
 
 @Injectable()
