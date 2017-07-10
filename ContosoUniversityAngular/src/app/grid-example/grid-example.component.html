@@ -3,8 +3,17 @@
 			[pageable]="true"
 			[sortable]="true"
 			[height]="270">
-	<kendo-grid-column field="ProductID" width="80"></kendo-grid-column>
-	<kendo-grid-column field="ProductName"></kendo-grid-column>
-	<kendo-grid-column field="UnitPrice" width="80" format="{0:c}"></kendo-grid-column>
-	<kendo-grid-column field="UnitsInStock" width="80"></kendo-grid-column>
+	<kendo-grid-column field="ProductID" width="10%" title="Id"></kendo-grid-column>
+	<kendo-grid-column field="ProductName" width="70%" title="Name"></kendo-grid-column>
+	<kendo-grid-column field="UnitPrice" width="10%" title="Unit Price" 
+					   [headerStyle]="{'text-align': 'right'}" 
+	                   [style]="{'text-align': 'right'}" 
+					   format="{0:c}">
+	</kendo-grid-column>
+	<kendo-grid-column field="UnitsInStock"
+	                   width="10%"
+					   title="Units In Stock"
+	                   [headerStyle]="{'text-align': 'right'}"
+	                   [style]="{'text-align': 'right'}">
+	</kendo-grid-column>
 </kendo-grid>
