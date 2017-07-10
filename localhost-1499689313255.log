@@ -1,0 +1,143 @@
+vendor.bundle.js:132943 Angular is running in the development mode. Call enableProdMode() to enable the production mode.
+about.service.ts:27 AboutService - constructor
+about-grid-data-binding.directive.ts:23 AboutGridDataBindingDirective - constructor
+about.component.ts:35 AboutComponent - getGridData - 1
+about.service.ts:57 AboutService -  getCountByEnrollmentDate - api/about/summary
+about-grid-data-binding.directive.ts:38 AboutGridDataBindingDirective - ngOnInit
+about-grid-data-binding.directive.ts:46 AboutGridDataBindingDirective - 1 - result=null
+about-grid-data-binding.directive.ts:65 AboutGridDataBindingDirective - rebind - before query
+about.service.ts:31 AboutService - query - before fetch
+about.service.ts:38 AboutService - fetch - url=api/about/summary, state={"skip":0,"take":10}
+about.service.ts:33 AboutService - query - after fetch
+about-grid-data-binding.directive.ts:67 AboutGridDataBindingDirective - rebind - after query
+zone.js:2263 XHR finished loading: GET "http://localhost:4200/api/about/summary".
+scheduleTask @ zone.js:2263
+webpackJsonp.../../../../zone.js/dist/zone.js.ZoneDelegate.scheduleTask @ zone.js:410
+onScheduleTask @ zone.js:300
+webpackJsonp.../../../../zone.js/dist/zone.js.ZoneDelegate.scheduleTask @ zone.js:404
+webpackJsonp.../../../../zone.js/dist/zone.js.Zone.scheduleTask @ zone.js:235
+webpackJsonp.../../../../zone.js/dist/zone.js.Zone.scheduleMacroTask @ zone.js:258
+(anonymous) @ zone.js:2287
+proto.(anonymous function) @ zone.js:1426
+(anonymous) @ http.es5.js:1275
+webpackJsonp.../../../../rxjs/Observable.js.Observable._trySubscribe @ Observable.js:171
+webpackJsonp.../../../../rxjs/Observable.js.Observable.subscribe @ Observable.js:159
+webpackJsonp.../../../../rxjs/operator/map.js.MapOperator.call @ map.js:54
+webpackJsonp.../../../../rxjs/Observable.js.Observable.subscribe @ Observable.js:156
+webpackJsonp.../../../../rxjs/operator/map.js.MapOperator.call @ map.js:54
+webpackJsonp.../../../../rxjs/Observable.js.Observable.subscribe @ Observable.js:156
+webpackJsonp.../../../../rxjs/operator/catch.js.CatchOperator.call @ catch.js:79
+webpackJsonp.../../../../rxjs/Observable.js.Observable.subscribe @ Observable.js:156
+webpackJsonp.../../../../rxjs/operator/finally.js.FinallyOperator.call @ finally.js:26
+webpackJsonp.../../../../rxjs/Observable.js.Observable.subscribe @ Observable.js:156
+webpackJsonp.../../../../../src/app/about/about.service.ts.AboutService.query @ about.service.ts:32
+webpackJsonp.../../../../../src/app/about/about-grid-data-binding.directive.ts.AboutGridDataBindingDirective.rebind @ about-grid-data-binding.directive.ts:66
+webpackJsonp.../../../../../src/app/about/about-grid-data-binding.directive.ts.AboutGridDataBindingDirective.ngOnInit @ about-grid-data-binding.directive.ts:52
+checkAndUpdateDirectiveInline @ core.es5.js:10834
+checkAndUpdateNodeInline @ core.es5.js:12330
+checkAndUpdateNode @ core.es5.js:12269
+debugCheckAndUpdateNode @ core.es5.js:13130
+debugCheckDirectivesFn @ core.es5.js:13071
+(anonymous) @ AboutComponent.html:22
+debugUpdateDirectives @ core.es5.js:13056
+checkAndUpdateView @ core.es5.js:12236
+callViewAction @ core.es5.js:12601
+execComponentViewsAction @ core.es5.js:12533
+checkAndUpdateView @ core.es5.js:12242
+callViewAction @ core.es5.js:12601
+execEmbeddedViewsAction @ core.es5.js:12559
+checkAndUpdateView @ core.es5.js:12237
+callViewAction @ core.es5.js:12601
+execComponentViewsAction @ core.es5.js:12533
+checkAndUpdateView @ core.es5.js:12242
+callWithDebugContext @ core.es5.js:13456
+debugCheckAndUpdateView @ core.es5.js:12996
+webpackJsonp.../../../core/@angular/core.es5.js.ViewRef_.detectChanges @ core.es5.js:10167
+(anonymous) @ core.es5.js:4805
+webpackJsonp.../../../core/@angular/core.es5.js.ApplicationRef_.tick @ core.es5.js:4805
+(anonymous) @ core.es5.js:4683
+webpackJsonp.../../../../zone.js/dist/zone.js.ZoneDelegate.invoke @ zone.js:391
+onInvoke @ core.es5.js:3890
+webpackJsonp.../../../../zone.js/dist/zone.js.ZoneDelegate.invoke @ zone.js:390
+webpackJsonp.../../../../zone.js/dist/zone.js.Zone.run @ zone.js:141
+webpackJsonp.../../../core/@angular/core.es5.js.NgZone.run @ core.es5.js:3821
+next @ core.es5.js:4683
+schedulerFn @ core.es5.js:3635
+webpackJsonp.../../../../rxjs/Subscriber.js.SafeSubscriber.__tryOrUnsub @ Subscriber.js:238
+webpackJsonp.../../../../rxjs/Subscriber.js.SafeSubscriber.next @ Subscriber.js:185
+webpackJsonp.../../../../rxjs/Subscriber.js.Subscriber._next @ Subscriber.js:125
+webpackJsonp.../../../../rxjs/Subscriber.js.Subscriber.next @ Subscriber.js:89
+webpackJsonp.../../../../rxjs/Subject.js.Subject.next @ Subject.js:55
+webpackJsonp.../../../core/@angular/core.es5.js.EventEmitter.emit @ core.es5.js:3621
+checkStable @ core.es5.js:3855
+onHasTask @ core.es5.js:3903
+webpackJsonp.../../../../zone.js/dist/zone.js.ZoneDelegate.hasTask @ zone.js:444
+webpackJsonp.../../../../zone.js/dist/zone.js.ZoneDelegate._updateTaskCount @ zone.js:464
+webpackJsonp.../../../../zone.js/dist/zone.js.Zone._updateTaskCount @ zone.js:288
+webpackJsonp.../../../../zone.js/dist/zone.js.Zone.runTask @ zone.js:208
+drainMicroTaskQueue @ zone.js:584
+ZoneTask.invoke @ zone.js:490
+about-grid-data-binding.directive.ts:46 AboutGridDataBindingDirective - 1 - result={"data":{},"total":0}
+about.service.ts:49 AboutService - fetch - finally
+zone.js:2263 XHR finished loading: GET "http://localhost:4200/api/about/summary".
+scheduleTask @ zone.js:2263
+webpackJsonp.../../../../zone.js/dist/zone.js.ZoneDelegate.scheduleTask @ zone.js:410
+onScheduleTask @ zone.js:300
+webpackJsonp.../../../../zone.js/dist/zone.js.ZoneDelegate.scheduleTask @ zone.js:404
+webpackJsonp.../../../../zone.js/dist/zone.js.Zone.scheduleTask @ zone.js:235
+webpackJsonp.../../../../zone.js/dist/zone.js.Zone.scheduleMacroTask @ zone.js:258
+(anonymous) @ zone.js:2287
+proto.(anonymous function) @ zone.js:1426
+(anonymous) @ http.es5.js:1275
+webpackJsonp.../../../../rxjs/Observable.js.Observable._trySubscribe @ Observable.js:171
+webpackJsonp.../../../../rxjs/Observable.js.Observable.subscribe @ Observable.js:159
+webpackJsonp.../../../../rxjs/operator/map.js.MapOperator.call @ map.js:54
+webpackJsonp.../../../../rxjs/Observable.js.Observable.subscribe @ Observable.js:156
+webpackJsonp.../../../../rxjs/operator/do.js.DoOperator.call @ do.js:63
+webpackJsonp.../../../../rxjs/Observable.js.Observable.subscribe @ Observable.js:156
+webpackJsonp.../../../../../src/app/about/about.component.ts.AboutComponent.getGridData @ about.component.ts:39
+webpackJsonp.../../../../../src/app/about/about.component.ts.AboutComponent.ngOnInit @ about.component.ts:30
+checkAndUpdateDirectiveInline @ core.es5.js:10834
+checkAndUpdateNodeInline @ core.es5.js:12330
+checkAndUpdateNode @ core.es5.js:12269
+debugCheckAndUpdateNode @ core.es5.js:13130
+debugCheckDirectivesFn @ core.es5.js:13071
+(anonymous) @ AboutComponent_Host.html:1
+debugUpdateDirectives @ core.es5.js:13056
+checkAndUpdateView @ core.es5.js:12236
+callViewAction @ core.es5.js:12601
+execEmbeddedViewsAction @ core.es5.js:12559
+checkAndUpdateView @ core.es5.js:12237
+callViewAction @ core.es5.js:12601
+execComponentViewsAction @ core.es5.js:12533
+checkAndUpdateView @ core.es5.js:12242
+callWithDebugContext @ core.es5.js:13456
+debugCheckAndUpdateView @ core.es5.js:12996
+webpackJsonp.../../../core/@angular/core.es5.js.ViewRef_.detectChanges @ core.es5.js:10167
+(anonymous) @ core.es5.js:4805
+webpackJsonp.../../../core/@angular/core.es5.js.ApplicationRef_.tick @ core.es5.js:4805
+(anonymous) @ core.es5.js:4683
+webpackJsonp.../../../../zone.js/dist/zone.js.ZoneDelegate.invoke @ zone.js:391
+onInvoke @ core.es5.js:3890
+webpackJsonp.../../../../zone.js/dist/zone.js.ZoneDelegate.invoke @ zone.js:390
+webpackJsonp.../../../../zone.js/dist/zone.js.Zone.run @ zone.js:141
+webpackJsonp.../../../core/@angular/core.es5.js.NgZone.run @ core.es5.js:3821
+next @ core.es5.js:4683
+schedulerFn @ core.es5.js:3635
+webpackJsonp.../../../../rxjs/Subscriber.js.SafeSubscriber.__tryOrUnsub @ Subscriber.js:238
+webpackJsonp.../../../../rxjs/Subscriber.js.SafeSubscriber.next @ Subscriber.js:185
+webpackJsonp.../../../../rxjs/Subscriber.js.Subscriber._next @ Subscriber.js:125
+webpackJsonp.../../../../rxjs/Subscriber.js.Subscriber.next @ Subscriber.js:89
+webpackJsonp.../../../../rxjs/Subject.js.Subject.next @ Subject.js:55
+webpackJsonp.../../../core/@angular/core.es5.js.EventEmitter.emit @ core.es5.js:3621
+checkStable @ core.es5.js:3855
+onHasTask @ core.es5.js:3903
+webpackJsonp.../../../../zone.js/dist/zone.js.ZoneDelegate.hasTask @ zone.js:444
+webpackJsonp.../../../../zone.js/dist/zone.js.ZoneDelegate._updateTaskCount @ zone.js:464
+webpackJsonp.../../../../zone.js/dist/zone.js.Zone._updateTaskCount @ zone.js:288
+webpackJsonp.../../../../zone.js/dist/zone.js.Zone.runTask @ zone.js:208
+drainMicroTaskQueue @ zone.js:584
+ZoneTask.invoke @ zone.js:490
+about.service.ts:66 AboutService - extractDataExtended - Response.status=200
+about.service.ts:71 AboutService - extractDataExtended - Response.body=[{"enrollmentDate":"2005-09-01T00:00:00","studentCount":1},{"enrollmentDate":"2010-09-01T00:00:00","studentCount":1},{"enrollmentDate":"2011-09-01T00:00:00","studentCount":1},{"enrollmentDate":"2012-09-01T00:00:00","studentCount":3},{"enrollmentDate":"2013-09-01T00:00:00","studentCount":2}]
+about.service.ts:61 AboutService -  getGridData - data = [{"enrollmentDate":"2005-09-01T00:00:00","studentCount":1},{"enrollmentDate":"2010-09-01T00:00:00","studentCount":1},{"enrollmentDate":"2011-09-01T00:00:00","studentCount":1},{"enrollmentDate":"2012-09-01T00:00:00","studentCount":3},{"enrollmentDate":"2013-09-01T00:00:00","studentCount":2}]
