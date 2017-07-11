@@ -25,6 +25,9 @@
 			                   width="10%"
 			                   [headerClass]="'grid-cell-right-justified'"
 			                   [class]="'grid-cell-right-justified'">
+				<ng-template kendoGridCellTemplate let-item>
+					{{item.budget | currency:'USD':true:'2.0-0'}}
+				</ng-template>
 			</kendo-grid-column>
 			
 			<kendo-grid-column field="administratorName"
