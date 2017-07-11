@@ -1,19 +1,27 @@
-<kendo-grid gridCustomBinding
-            [pageSize]="10"
-            [pageable]="true"
-            [sortable]="true"
-            [height]="270">
-	<kendo-grid-column field="ProductID" width="10%" title="Id"></kendo-grid-column>
-	<kendo-grid-column field="ProductName" width="70%" title="Name"></kendo-grid-column>
-	<kendo-grid-column field="UnitPrice" width="10%" title="Unit Price" 
-	                   [headerStyle]="{'text-align': 'right'}" 
-	                   [style]="{'text-align': 'right'}" 
-	                   format="{0:c}">
-	</kendo-grid-column>
-	<kendo-grid-column field="UnitsInStock"
-	                   width="10%"
-	                   title="Units In Stock"
-	                   [headerStyle]="{'text-align': 'right'}"
-	                   [style]="{'text-align': 'right'}">
-	</kendo-grid-column>
-</kendo-grid>
+<div class="row">
+	<div class="col-md-12 text-center h2">Grid Custom Binding Example</div>
+</div>
+<div class="row">
+	<div class="col-md-12 grid-min-height">
+		<kendo-grid gridCustomBinding
+		            [pageSize]="10"
+		            [pageable]="true"
+		            [sortable]="true"
+		            [height]="inherit">
+			<kendo-grid-column field="ProductID" width="10%" title="Id"></kendo-grid-column>
+			<kendo-grid-column field="ProductName" width="70%" title="Name"></kendo-grid-column>
+			<kendo-grid-column field="UnitPrice" width="10%" title="Unit Price"
+			                   [headerClass]="'grid-cell-right-justified'"
+							   [class]="'grid-cell-right-justified'"
+			                   format="{0:c}">
+			</kendo-grid-column>
+			<kendo-grid-column field="UnitsInStock"
+			                   width="10%"
+			                   title="Units In Stock"
+			                   [headerClass]="'grid-cell-right-justified'"
+			                   [class]="'grid-cell-right-justified'"
+							   >
+			</kendo-grid-column>
+		</kendo-grid>
+	</div>
+</div>

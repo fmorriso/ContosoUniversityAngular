@@ -1,6 +1,6 @@
 ﻿/* You can add global styles to this file, and also import other style files */
 /*
-	Spinner that shows during navigation
+	Spinner that shows during navigation and some data retrieval operations
 */
 /* Spinner */
 .spinner {
@@ -39,6 +39,19 @@
 		transform: rotate(359deg);
 	}
 }
+/* end of spinner styling*/
+
+/* start of Kendo Angular Grid Styling overrides */
+.grid-min-height {
+	min-height: 33%;
+	height: 50%;
+}
+
+/* I consider this a bug in Kendo Angular2 UI Grid - you MUST specify !important in the style; otherwise, it does not get inserted at the end */
+.grid-cell-right-justified {
+	text-align: right !important;
+}
+/* end of Kendo Angular Grid Styling overrides */
 
 /* Kendo Angular UI theme */
 @import "~@progress/kendo-theme-bootstrap/scss/all";

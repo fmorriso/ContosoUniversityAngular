@@ -65,7 +65,7 @@ export class AboutService extends BehaviorSubject<GridDataResult> {
 
 	// http://www.telerik.com/kendo-angular-ui/components/grid/sorting/
 	// http://www.telerik.com/kendo-angular-ui/components/grid/data-binding/automatic-operations/
-	getGridData(): Observable<StudentCountByEnrollmentDateView[]> {
+	getGridDataX(): Observable<StudentCountByEnrollmentDateView[]> {
 		const url: string = `${this.relativeUrl}/summary`
 		console.log(`${this.compName} -  getCountByEnrollmentDate - ${url}`);
 		return <Observable<StudentCountByEnrollmentDateView[]>>this.http
