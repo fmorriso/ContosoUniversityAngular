@@ -14,6 +14,7 @@ import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-gr
 import { State } from '@progress/kendo-data-query';
 
 import { StudentCountByEnrollmentDateView } from '../models/StudentCountByEnrollmentDateView';
+import { SpinnerService } from 'app/spinner.service';
 
 @Injectable()
 export class AboutService extends BehaviorSubject<GridDataResult> {
@@ -22,7 +23,8 @@ export class AboutService extends BehaviorSubject<GridDataResult> {
 	private headers = new Headers({ 'Content-Type': 'application/json' });
 	private relativeUrl = 'api/about';  // URL to web api
 
-	constructor(private http: Http) {
+	constructor(private http: Http,
+		        private spinnerService: SpinnerService) {
 		super(null);
 		console.log(`${this.compName} - constructor`);
 	}
@@ -36,6 +38,9 @@ export class AboutService extends BehaviorSubject<GridDataResult> {
 	private fetch(state: State): Observable<GridDataResult> {
 		const url: string = `${this.relativeUrl}/summary`
 		console.log(`${this.compName} - fetch - url=${url}, state=${JSON.stringify(state)}`);
+
+		Promise.resolve(null).then(() => this.spinnerService.isLoading = true);
+
 		return this.http
 			.get(url)
 			.map((response: Response) => {
@@ -54,6 +59,7 @@ export class AboutService extends BehaviorSubject<GridDataResult> {
 			.catch(this.handleError)
 			.finally(() => {
 				console.log(`${this.compName} - fetch - finally`)
+				Promise.resolve(null).then(() => this.spinnerService.isLoading = false);
 			});
 	}
 

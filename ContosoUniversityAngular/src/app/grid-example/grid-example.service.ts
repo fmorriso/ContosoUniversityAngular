@@ -13,7 +13,7 @@ import 'rxjs/add/observable/of';
 import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { toODataString } from '@progress/kendo-data-query';
 import { State } from '@progress/kendo-data-query';
-import { SpinnerService } from "app/spinner.service";
+import { SpinnerService } from 'app/spinner.service';
 
 // http://www.telerik.com/kendo-angular-ui/components/grid/data-binding/automatic-operations/
 @Injectable()
