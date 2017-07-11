@@ -12,26 +12,27 @@ import { Department } from "app/models/department";
 })
 export class CoursesComponent implements OnInit {
 
+	compName: string = 'CoursesComponent';
 	courses: Observable<Course[]>;
-
+	
 	constructor(public coursesService: CoursesService) {
-		 console.log('CoursesComponent - constructor');
+		 console.log(`${this.compName} - constructor`);
 	}
 
 	ngOnInit() {
-		console.log('CoursesComponent - ngOnInit - 1');
+		console.log(`${this.compName} - ngOnInit - 1`);
 		this.getCourses();
-		console.log('CoursesComponent - ngOnInit - 2');
+		console.log(`${this.compName} - ngOnInit - 2`);
 	}
 
 	getCourses() {
-		console.log('CoursesComponent - getInstructors - 1');
+		console.log(`${this.compName} - getCourses - 1`);
 		this.courses = this.coursesService.getCourses();
-		console.log('CoursesComponent - getInstructors - 2');
+		console.log(`${this.compName} - getCourses - courses=${JSON.stringify(this.courses)}`);
 	}
 
 	getDepartmentName(course: Course): string {
-		console.log(`CoursesComponent - getDepartmentName - ${JSON.stringify(course)}`);
+		//console.log(`${this.compName} - getDepartmentName - ${JSON.stringify(course)}`);
 		if (course) {
 			if (course.department) {
 				if (course.department.name) {

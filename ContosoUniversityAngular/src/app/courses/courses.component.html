@@ -2,11 +2,49 @@
 	<div class="col-md-12 text-center h2">Courses</div>
 </div>
 
+<!--
 <ng-template ngFor let-course [ngForOf]="courses | async">
 	<div class="row">
-		<div class="col-md-2">{{course.courseId}}</div>
+		<div class="col-md-2">{{course.courseID}}</div>
 		<div class="col-md-2">{{course.title}}</div>
 		<div class="col-md-2">{{course.credits}}</div>
 		<div class="col-md-2">{{getDepartmentName(course)}}</div>
 	</div>
 </ng-template>
+-->
+
+<div class="row">
+	<div class="col-md-12 grid-min-height">
+		<kendo-grid [kendoGridBinding]="courses | async"
+					[pageSize]="10"
+					[pageable]="true"
+					[sortable]="true"
+					[filterable]="true"
+					[groupable]="true"
+					[height]="'inherit'">
+			<kendo-grid-column field="courseID"
+							   title="ID"
+							   width="10%">
+			</kendo-grid-column>
+			<kendo-grid-column field="title"
+							   title="Title"
+							   width="25%">
+			</kendo-grid-column>
+			<kendo-grid-column field="credits"
+							   title="Credits"
+							   width="10%"
+							   [headerClass]="'grid-cell-right-justified'"
+							   [class]="'grid-cell-right-justified'">
+			</kendo-grid-column>
+
+			<kendo-grid-column field="departmentName"
+							   title="Department"
+							   width="25%">
+				<ng-template kendoGridCellTemplate let-item>
+					{{getDepartmentName(item)}}
+				</ng-template>
+			</kendo-grid-column>
+
+		</kendo-grid>
+	</div>
+</div>

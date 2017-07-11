@@ -11,6 +11,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/of';
 
 import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
+import { toODataString } from '@progress/kendo-data-query';
 import { State } from '@progress/kendo-data-query';
 
 import { StudentCountByEnrollmentDateView } from '../models/StudentCountByEnrollmentDateView';
@@ -26,17 +27,19 @@ export class AboutService extends BehaviorSubject<GridDataResult> {
 	constructor(private http: Http,
 		        private spinnerService: SpinnerService) {
 		super(null);
-		console.log(`${this.compName} - constructor`);
+		console.log(`${this.compName} - constructor - isLoading = ${this.spinnerService.isLoading}`);
 	}
 
 	public query(state: State): void {
-		console.log(`${this.compName} - query - before fetch`);
-		this.fetch(state).subscribe(x => super.next(x));
-		console.log(`${this.compName} - query - after fetch`);
+		console.log(`${this.compName} - query - state=${JSON.stringify(state)}`);
+		this.fetch(state)
+			.subscribe(x => super.next(x));
 	}
 
-	private fetch(state: State): Observable<GridDataResult> {
-		const url: string = `${this.relativeUrl}/summary`
+	private fetch(state: any): Observable<GridDataResult> {
+		
+		const queryStr = `${toODataString(state)}&$count=true`;
+		const url: string = `${this.relativeUrl}/summary?${queryStr}`
 		console.log(`${this.compName} - fetch - url=${url}, state=${JSON.stringify(state)}`);
 
 		Promise.resolve(null).then(() => this.spinnerService.isLoading = true);

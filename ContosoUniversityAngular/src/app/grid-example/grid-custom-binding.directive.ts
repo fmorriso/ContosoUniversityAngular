@@ -14,7 +14,7 @@ export class GridCustomBindingDirective extends DataBindingDirective implements 
 	private compName: string = 'GridCustomBindingDirective';
 
 	constructor(private service: GridExampleService,
-		grid: GridComponent) {
+		        grid: GridComponent) {
 		super(grid);
 		console.log(`${this.compName} - constructor`);
 	}

@@ -32,14 +32,13 @@ export class GridExampleService extends BehaviorSubject<GridDataResult> implemen
 
 	//TODO: try to figure out why Angular 4.2.6 never calls this method
 	ngOnInit() {
-		console.log(`${this.compName} - ngOnInit - top - tableName=${this.tableName}`);
-		this.tableName = 'Products';
-		console.log(`${this.compName} - ngOnInit - bottom - tableName=${this.tableName}`);
+		//console.log(`${this.compName} - ngOnInit - top - tableName=${this.tableName}`);
+		//this.tableName = 'Products';
+		//console.log(`${this.compName} - ngOnInit - bottom - tableName=${this.tableName}`);
 	}
 
 	public query(state: any): void {
-		console.log(`${this.compName} - query - state=${JSON.stringify(state)}`);
-		console.log(`${this.compName} - query - tableName=${this.tableName}`);
+		console.log(`${this.compName} - query - state=${JSON.stringify(state)}, tableName=${this.tableName}`);
 		this.fetch(this.tableName, state)
 			.subscribe(x => super.next(x));
 	}
@@ -47,7 +46,7 @@ export class GridExampleService extends BehaviorSubject<GridDataResult> implemen
 	private fetch(tableName: string, state: any): Observable<GridDataResult> {
 		console.log(`${this.compName} - query - tableName=${tableName}, state=${JSON.stringify(state)}`);
 		const queryStr = `${toODataString(state)}&$count=true`;
-		console.log(`${this.compName} - query - queryStr=${queryStr}`);
+		//console.log(`${this.compName} - query - queryStr=${queryStr}`);
 		
 		Promise.resolve(null).then(() => this.spinnerService.isLoading = true);
 		
@@ -59,11 +58,12 @@ export class GridExampleService extends BehaviorSubject<GridDataResult> implemen
 				total: parseInt(response["@odata.count"], 10)
 			}))
 			.finally(() => {
-				console.log(`${this.compName} - query - finally`);
+				//console.log(`${this.compName} - query - finally`);
 				Promise.resolve(null).then(() => this.spinnerService.isLoading = false);
 			});
 	}
 
+/*
 	public queryForCategory({ CategoryID }: { CategoryID: number }, state?: any): void {
 		console.log(`${this.compName} - queryForCategory`);
 		this.query(Object.assign({}, state, {
@@ -87,5 +87,6 @@ export class GridExampleService extends BehaviorSubject<GridDataResult> implemen
 			}
 		}));
 	}
+*/
 
 }

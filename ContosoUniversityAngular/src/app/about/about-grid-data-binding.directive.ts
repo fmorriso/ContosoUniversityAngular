@@ -40,7 +40,6 @@ export class AboutGridDataBindingDirective extends DataBindingDirective implemen
 		//TODO: figure out why the first time through, result is null
 		this.serviceSubscription = this.service.subscribe(
 			result => {
-				// ISSUE: the following console.log always reports: {"data": {}, "total": 0}
 				console.log(`${this.compName} - 1 - result=${JSON.stringify(result)}`);
 				this.grid.data = result;
 			}
@@ -62,6 +61,6 @@ export class AboutGridDataBindingDirective extends DataBindingDirective implemen
 	public rebind(): void {
 		console.log(`${this.compName} - rebind - before query - state=${JSON.stringify(this.state)}`);
 		this.service.query(this.state);
-		console.log(`${this.compName} - rebind - after query`);
+		//console.log(`${this.compName} - rebind - after query`);
 	}
 }
