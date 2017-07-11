@@ -10,9 +10,12 @@ import { SpinnerService } from './spinner.service';
 export class AppComponent implements OnInit {
 
 	title = 'Contoso University - Angular';
-	
+
+	// NOTE: the SpinnerService must be public because ng build --prod complains if it is private.
+	//       At least that is the case with Angular 4.2.6 and Angular-CLI 1.2.0 as of mid-July 2017.
 	constructor(private router: Router,
-		        public spinnerService: SpinnerService) {
+		public spinnerService: SpinnerService) {
+
 		router.events
 			.subscribe((routerEvent: Event) => {
 				this.checkRouterEvent(routerEvent)
@@ -31,13 +34,13 @@ export class AppComponent implements OnInit {
 
 	private checkRouterEvent(routerEvent: Event): void {
 		if (routerEvent instanceof NavigationStart) {
-			//this.spinnerService.isLoading = true;
+			this.spinnerService.isLoading = true;
 		}
 
 		if (routerEvent instanceof NavigationEnd ||
 			routerEvent instanceof NavigationCancel ||
 			routerEvent instanceof NavigationError) {
-			//this.spinnerService.isLoading = false;
+			this.spinnerService.isLoading = false;
 		}
 	}
 }
