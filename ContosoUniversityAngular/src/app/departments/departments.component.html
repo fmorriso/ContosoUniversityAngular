@@ -2,12 +2,39 @@
 	<div class="col-md-12 text-center h2">Departments</div>
 </div>
 
-<ng-template ngFor let-department [ngForOf]="departments | async">
-	<div class="row">
-		<div class="col-md-2">{{department.id}}</div>
-		<div class="col-md-2">{{department.name}}</div>
-		<div class="col-md-2">{{department.budget}}</div>
-		<div class="col-md-2">{{department.startDate | date:"yyyy-MM-dd"}}</div>
-		<div class="col-md-4">{{getAdministratorName(department)}}</div>
+<div class="row">
+	<div class="col-md-12 grid-min-height">
+		<kendo-grid [kendoGridBinding]="departments | async"
+		            [pageSize]="10"
+		            [pageable]="true"
+		            [sortable]="true"
+		            [filterable]="true"
+		            [groupable]="true"
+		            [height]="'inherit'">
+			<kendo-grid-column field="id"
+			                   title="ID"
+			                   width="10%">
+			</kendo-grid-column>
+			<kendo-grid-column field="name"
+			                   title="Name"
+			                   width="25%">
+			</kendo-grid-column>
+			
+			<kendo-grid-column field="budget"
+			                   title="Budget"
+			                   width="10%"
+			                   [headerClass]="'grid-cell-right-justified'"
+			                   [class]="'grid-cell-right-justified'">
+			</kendo-grid-column>
+			
+			<kendo-grid-column field="administratorName"
+			                   title="Administrator"
+			                   width="25%">
+				<ng-template kendoGridCellTemplate let-item>
+					{{getAdministratorName(item)}}
+				</ng-template>
+			</kendo-grid-column>
+
+		</kendo-grid>
 	</div>
-</ng-template>
+</div>
