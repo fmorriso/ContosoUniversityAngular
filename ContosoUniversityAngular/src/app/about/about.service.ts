@@ -36,14 +36,21 @@ export class AboutService extends BehaviorSubject<GridDataResult> {
 	private fetch(state: State): Observable<GridDataResult> {
 		const url: string = `${this.relativeUrl}/summary`
 		console.log(`${this.compName} - fetch - url=${url}, state=${JSON.stringify(state)}`);
-		// TODO: figure out why response.json() is always empty and count is always zero
 		return this.http
 			.get(url)
-			.map((response: Response) => response.ok ? response.json() : {})
-			.map((response: Response): GridDataResult => (<GridDataResult>{
-				data: response.ok ? response.json() : {},
-				total: response.ok ? response.json().length : 0
-			}))
+			.map((response: Response) => {
+				if (response.ok) {
+					const gridData = response.json();
+					console.log(`${this.compName} - ok - gridData=${JSON.stringify(gridData)}`);
+					return {
+						data: gridData,
+						total: gridData.length
+					};
+				} else {
+					console.log(`${this.compName} - response not ok - ${JSON.stringify(response)}`);
+					return { data:[], total: 0 }
+				}
+			})
 			.catch(this.handleError)
 			.finally(() => {
 				console.log(`${this.compName} - fetch - finally`)

@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 	title = 'Contoso University - Angular';
 	
 	constructor(private router: Router,
-		        private spinnerService: SpinnerService) {
+		        public spinnerService: SpinnerService) {
 		router.events
 			.subscribe((routerEvent: Event) => {
 				this.checkRouterEvent(routerEvent)
