@@ -21,7 +21,7 @@ import { SpinnerService } from 'app/spinner.service';
 export class AboutService extends BehaviorSubject<GridDataResult> {
 
 	private compName: string = 'AboutService';
-	private headers = new Headers({ 'Content-Type': 'application/json' });
+	private readonly headers = new Headers({ 'Content-Type': 'application/json' });
 	private relativeUrl = 'api/about';  // URL to web api
 
 	constructor(private http: Http,
@@ -36,7 +36,7 @@ export class AboutService extends BehaviorSubject<GridDataResult> {
 			.subscribe(x => super.next(x));
 	}
 
-	private fetch(state: any): Observable<GridDataResult> {
+	private fetch(state: State): Observable<GridDataResult> {
 		
 		const queryStr = `${toODataString(state)}&$count=true`;
 		const url: string = `${this.relativeUrl}/summary?${queryStr}`

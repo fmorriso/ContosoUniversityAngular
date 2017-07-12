@@ -19,8 +19,8 @@ import { SpinnerService } from 'app/spinner.service';
 @Injectable()
 export class GridExampleService extends BehaviorSubject<GridDataResult> implements OnInit {
 
-	private compName: string = 'GridExampleService';
-	private BASE_URL: string = 'http://services.odata.org/V4/Northwind/Northwind.svc/';
+	private readonly compName: string = 'GridExampleService';
+	private readonly BASE_URL: string = 'http://services.odata.org/V4/Northwind/Northwind.svc/';
 	private tableName: string;
 
 	constructor(private http: Http,
