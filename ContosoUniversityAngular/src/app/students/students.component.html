@@ -1,9 +1,41 @@
 ﻿<div class="row">
-  <div class="col-md-12 text-center h2">Students</div>
+	<div class="col-md-12 text-center h2">Students</div>
 </div>
 
-<ng-template ngFor let-student [ngForOf]="students | async">
-  <div class="row">
-    <div class="col-md-6">{{student.fullName}}</div>
-  </div>
-</ng-template>
+<div class="row">
+	<div class="col-md-12 grid-min-height">
+		<kendo-grid [kendoGridBinding]="students | async"
+					[pageSize]="10"
+					[pageable]="true"
+					[sortable]="true"
+					[filterable]="true"
+					[groupable]="true"
+					[height]="'inherit'">
+
+			<kendo-grid-column field="id"
+							   title="ID"
+							   width="5%">
+			</kendo-grid-column>
+
+			<kendo-grid-column field="lastName"
+							   title="Last Name"
+							   width="20%">
+			</kendo-grid-column>
+
+			<kendo-grid-column field="firstMidName"
+							   title="First Name"
+							   width="15%">
+			</kendo-grid-column>
+
+			<kendo-grid-column field="enrollmentDate"
+							   title="Enrollment Date"
+							   width="10%">
+				<ng-template kendoGridCellTemplate let-item>
+					{{item.enrollmentDate | date:"yyyy-MM-dd"}}
+				</ng-template>
+			</kendo-grid-column>
+
+		</kendo-grid>
+	</div>
+</div>
+
