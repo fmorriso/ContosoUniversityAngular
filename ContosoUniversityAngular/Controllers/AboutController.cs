@@ -41,7 +41,7 @@ namespace ContosoUniversityAngular.Controllers
 				}
 			}
 
-			// [pageSize]="3" => $top=3 but how do we make sure the grid know there are more than 3 records total???
+			// [pageSize]="3" => $top=3 but how do we make sure the grid knows there are more than 3 records total???
 			if (queryParameters.ContainsKey("$top"))
 			{
 				int n;
@@ -59,12 +59,7 @@ namespace ContosoUniversityAngular.Controllers
 			else
 			{
 				// default sort
-				var dict = new Dictionary<string, StringValues>
-				{
-					{ "$orderby", "enrollmentDate" }
-				};
-				var qc = new QueryCollection(dict);
-				entityQuery = AppendSortSpecificationToQuery(qc, entityQuery);
+				entityQuery = entityQuery.OrderBy(column => column.EnrollmentDate);
 			}
 
 			return await entityQuery.AsNoTracking().ToListAsync(); ;
