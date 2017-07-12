@@ -8,7 +8,7 @@ import { Department } from "app/models/department";
 @Component({
 	selector: 'app-courses',
 	templateUrl: './courses.component.html',
-	styleUrls: ['./courses.component.css']
+	styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
 

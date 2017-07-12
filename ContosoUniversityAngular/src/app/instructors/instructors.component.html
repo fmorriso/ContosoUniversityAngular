@@ -2,11 +2,50 @@
 	<div class="col-md-12 text-center h2">Instructors</div>
 </div>
 
-<ng-template ngFor let-instructor [ngForOf]="instructors | async">
-	<div class="row">
-		<div class="col-md-2">{{instructor.lastName}}</div>
-		<div class="col-md-2">{{instructor.firstMidName}}</div>
-		<div class="col-md-2">{{instructor.hireDate | date:"yyyy-MM-dd"}}</div>
-		<div class="col-md-2">{{getOfficeLocation(instructor)}}</div>
+<div class="row">
+	<div class="col-md-12 grid-min-height">
+		<kendo-grid [kendoGridBinding]="instructors | async"
+		            [pageSize]="10"
+		            [pageable]="true"
+		            [sortable]="true"
+		            [filterable]="true"
+		            [groupable]="true"
+		            [height]="'inherit'">
+			
+			<kendo-grid-column field="id"
+			                   title="ID"
+			                   width="10%">
+			</kendo-grid-column>
+
+			<kendo-grid-column field="lastName"
+			                   title="Last Name"
+			                   width="20%">
+			</kendo-grid-column>
+
+			<kendo-grid-column field="firstMidName"
+							   title="First Name"
+							   width="15%">
+			</kendo-grid-column>
+			
+			<kendo-grid-column field="hireDate"
+			                   title="Hire Date"
+			                   width="10%"
+			                   >
+				<ng-template kendoGridCellTemplate let-item>
+					{{item.hireDate | date:"yyyy-MM-dd"}}
+				</ng-template>
+			</kendo-grid-column>
+
+			<kendo-grid-column field="officeLocation"
+			                   title="Office"
+			                   width="15%">
+				<ng-template kendoGridCellTemplate let-item>
+					{{getOfficeLocation(item)}}
+				</ng-template>
+			</kendo-grid-column>
+
+		</kendo-grid>
 	</div>
-</ng-template>
+</div>
+
+

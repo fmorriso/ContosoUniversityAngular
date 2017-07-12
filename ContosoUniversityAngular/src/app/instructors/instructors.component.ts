@@ -7,7 +7,7 @@ import { InstructorsService } from './instructors.service';
 @Component({
 	selector: 'app-instructors',
 	templateUrl: './instructors.component.html',
-	styleUrls: ['./instructors.component.css']
+	styleUrls: ['./instructors.component.scss']
 })
 export class InstructorsComponent implements OnInit {
 	private compName: string = 'InstructorsComponent';
