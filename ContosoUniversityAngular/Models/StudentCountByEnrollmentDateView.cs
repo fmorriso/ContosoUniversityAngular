@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ContosoUniversityAngular.Models
 {
 	[Table("StudentCountByEnrollmentDateView")]
-	public class StudentCountByEnrollmentDateView
+	public class StudentCountByEnrollmentDateView : BaseEntity
     {
 		[Key]
 		public DateTime EnrollmentDate { get; set; }

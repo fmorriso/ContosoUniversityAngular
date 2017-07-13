@@ -9,7 +9,6 @@ using ContosoUniversityAngular.Models;
 namespace ContosoUniversityAngular.Controllers
 {
     [Produces("application/json")]
-    //[Route("api/Students")]
     public class StudentsController : BaseController
     {
         public StudentsController(SchoolContext context) : base(context)

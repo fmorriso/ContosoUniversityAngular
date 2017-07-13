@@ -44,6 +44,11 @@ export class AboutService extends BehaviorSubject<GridDataResult> {
 
 		Promise.resolve(null).then(() => this.spinnerService.isLoading = true);
 
+		// The HTTP GET will return a JSON reprepsentation of an instance of
+		// C# class EntityList, which contains the List<BaseEntity> and an
+		// int containing TotalItems (totalItems in JSON).
+		// Example:
+		// gridData={"listOfItems":[{"enrollmentDate":"2005-09-01T00:00:00","studentCount":1},{"enrollmentDate":"2010-09-01T00:00:00","studentCount":1},{"enrollmentDate":"2011-09-01T00:00:00","studentCount":1}],"totalItems":5}
 		return this.http
 			.get(url)
 			.map((response: Response) => {
@@ -51,8 +56,8 @@ export class AboutService extends BehaviorSubject<GridDataResult> {
 					const gridData = response.json();
 					console.log(`${this.compName} - ok - gridData=${JSON.stringify(gridData)}`);
 					return {
-						data: gridData,
-						total: gridData.length
+						data: gridData.listOfItems,
+						total: gridData.totalItems
 					};
 				} else {
 					console.log(`${this.compName} - response not ok - ${JSON.stringify(response)}`);

@@ -19,11 +19,24 @@ namespace ContosoUniversityAngular.Controllers
 		}
 
 		// https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing
+
+		/// <summary>
+		/// Returns a list showing a count of students by enrollment date.
+		/// </summary>
+		/// <remarks>
+		/// The list includes the total number of items
+		/// </remarks>
+		/// <returns></returns>
 		[HttpGet("api/[controller]/[action]")]
-		public async Task<IEnumerable<StudentCountByEnrollmentDateView>> Summary()
+		public async Task<EntityList> Summary()
 		{
 			// start with a bare bones entity query
 			var entityQuery = _context.StudentCountByEnrollmentDateView.Select(item => item);
+
+			// Since the grid needs the original total in order to perform paging,
+			// go get that value.
+			// TODO: perform this *AFTER* any future OData filtering logic is implemented
+			var totalEntries = await entityQuery.AsNoTracking().CountAsync();
 
 			// check for OData query parameters.
 			// Example: {?$skip=0&$top=3&$count=true}
@@ -62,7 +75,16 @@ namespace ContosoUniversityAngular.Controllers
 				entityQuery = entityQuery.OrderBy(column => column.EnrollmentDate);
 			}
 
-			return await entityQuery.AsNoTracking().ToListAsync(); ;
+			var items = await entityQuery.AsNoTracking().ToListAsync();
+
+			// convert to list that includes grand total so grid can page
+			var entityList = new EntityList()
+			{
+				TotalItems = totalEntries
+			};
+			entityList.ListOfItems.AddRange(items);
+
+			return entityList;
 		}
 
 		private static IQueryable<StudentCountByEnrollmentDateView> AppendSortSpecificationToQuery(IQueryCollection queryParameters, IQueryable<StudentCountByEnrollmentDateView> query)
