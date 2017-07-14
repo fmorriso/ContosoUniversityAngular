@@ -8,6 +8,7 @@ import { AboutService } from './about.service';
 import { StudentCountByEnrollmentDateView } from '../models/StudentCountByEnrollmentDateView';
 
 import 'rxjs/add/operator/switchMap';
+import { ToastrService, ToastrConfig } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-about',
@@ -16,14 +17,16 @@ import 'rxjs/add/operator/switchMap';
 })
 export class AboutComponent implements OnInit {
 
-	private compName: string = 'AboutComponent';
+	private readonly compName: string = 'AboutComponent';
 	
 	// http://www.telerik.com/kendo-angular-ui/components/grid/sorting/
 	// http://www.telerik.com/kendo-angular-ui/components/grid/data-binding/
 	// http://www.telerik.com/kendo-angular-ui/components/grid/data-binding/automatic-operations/
 	
-	constructor() { }
+	constructor(private toastr: ToastrService) {}
 
-	ngOnInit() { }
+	ngOnInit() {
+		this.toastr.info('ngOnInit', this.compName);
+	}
 
 }

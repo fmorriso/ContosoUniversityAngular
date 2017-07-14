@@ -25,8 +25,10 @@
 			<kendo-grid-column field="studentCount"
 			                   title="Students"
 			                   width="25%"
+			                   filter="numeric"
 			                   [headerClass]="'grid-cell-right-justified'"
-			                   [class]="'grid-cell-right-justified'">
+			                   [class]="'grid-cell-right-justified'"
+							   >
 				<ng-template kendoGridCellTemplate let-item>
 					{{item.studentCount | number:'1.0-0' }}
 				</ng-template>

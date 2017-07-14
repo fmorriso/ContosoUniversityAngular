@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { ToastrModule } from 'ngx-toastr';
+
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
@@ -33,6 +35,7 @@ import { GridExampleService } from './grid-example/grid-example.service';
 import { GridCustomBindingDirective } from './grid-example/grid-custom-binding.directive';
 import { SpinnerService } from './spinner.service';
 
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -60,6 +63,10 @@ import { SpinnerService } from './spinner.service';
 		ButtonsModule,
 		LabelModule,
 		GridModule,
+		ToastrModule.forRoot({
+			positionClass: 'toast-bottom-right',
+			timeOut: 3500
+		}),
 		AppRoutingModule
 	],
 	providers: [

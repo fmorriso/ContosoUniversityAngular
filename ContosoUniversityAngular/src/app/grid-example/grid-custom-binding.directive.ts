@@ -2,6 +2,8 @@ import { Directive, OnInit, OnDestroy } from '@angular/core';
 import { DataBindingDirective, GridComponent, GridDataResult } from '@progress/kendo-angular-grid';
 import { Subscription } from 'rxjs/Subscription';
 
+import { ToastrService, ToastrConfig } from 'ngx-toastr';
+
 import { GridExampleService } from './grid-example.service';
 import { SpinnerService } from '../spinner.service';
 
@@ -11,16 +13,21 @@ import { SpinnerService } from '../spinner.service';
 export class GridCustomBindingDirective extends DataBindingDirective implements OnInit, OnDestroy {
 
 	private serviceSubscription: Subscription;
-	private compName: string = 'GridCustomBindingDirective';
+	private readonly compName: string = 'GridCustomBindingDirective';
+	private readonly freezeToast: ToastrConfig = {
+		closeButton: true,
+		timeOut: 0
+	};
 
 	constructor(private service: GridExampleService,
-		        grid: GridComponent) {
+		        grid: GridComponent,
+		        private toastr: ToastrService) {
 		super(grid);
-		console.log(`${this.compName} - constructor`);
+		this.toastr.info(`constructor`, this.compName);
 	}
 
 	public ngOnInit(): void {
-		console.log(`${this.compName} - ngOnInit`);
+		//this.toastr.info(`ngOnInit`, this.compName);
 		this.serviceSubscription = this.service.subscribe((result: GridDataResult) => {
 			this.grid.data = result;
 		});
@@ -36,7 +43,7 @@ export class GridCustomBindingDirective extends DataBindingDirective implements 
 	}
 
 	public rebind(): void {
-		console.log(`${this.compName} - rebind - state=${JSON.stringify(this.state)}`);
+		this.toastr.info(`rebind - state=${JSON.stringify(this.state)}`, this.compName, this.freezeToast);
 		this.service.query(this.state);
 	}
 

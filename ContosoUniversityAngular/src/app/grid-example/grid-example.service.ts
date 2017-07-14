@@ -52,7 +52,7 @@ export class GridExampleService extends BehaviorSubject<GridDataResult> implemen
 		
 		return this.http
 			.get(`${this.BASE_URL}${tableName}?${queryStr}`)
-			.map(response => response.json())
+			.map((response: Response) => response.json())
 			.map(response => (<GridDataResult>{
 				data: response.value,
 				total: parseInt(response["@odata.count"], 10)

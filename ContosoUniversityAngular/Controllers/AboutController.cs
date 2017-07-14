@@ -14,10 +14,12 @@ namespace ContosoUniversityAngular.Controllers
 	[Produces("application/json")]
 	public class AboutController : BaseController
 	{
+		public static int TotalItems { get; set; }
+
 		public AboutController(SchoolContext context) : base(context)
 		{
 		}
-
+		
 		// https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing
 
 		/// <summary>
@@ -33,14 +35,25 @@ namespace ContosoUniversityAngular.Controllers
 			// start with a bare bones entity query
 			var entityQuery = _context.StudentCountByEnrollmentDateView.Select(item => item);
 
-			// Since the grid needs the original total in order to perform paging,
-			// go get that value.
-			// TODO: perform this *AFTER* any future OData filtering logic is implemented
-			var totalEntries = await entityQuery.AsNoTracking().CountAsync();
-
 			// check for OData query parameters.
 			// Example: {?$skip=0&$top=3&$count=true}
 			IQueryCollection queryParameters = Request.Query;
+
+			// Filtering reference: http://www.telerik.com/kendo-angular-ui/components/grid/filtering/built-in-template/
+			//TODO: handle filtering
+			// Example: url=api/about/summary?$skip=0&$top=3&$filter=studentCount gt 2&$count=true, state={"skip":0,"take":3,"sort":[],"group":[],"filter":{"filters":[{"field":"studentCount","operator":"gt","value":2}],"logic":"and"}}
+			if (queryParameters.ContainsKey("$filter"))
+			{
+				// extract first filter 
+			}
+
+			// Since the grid needs the original total in order to perform paging,
+			// go get that value.
+			// TODO: perform this *AFTER* any future OData filtering logic is implemented
+			if (TotalItems == 0)
+			{
+				TotalItems = await entityQuery.AsNoTracking().CountAsync();
+			}
 
 			if (queryParameters.ContainsKey("$skip"))
 			{
@@ -64,7 +77,8 @@ namespace ContosoUniversityAngular.Controllers
 				}
 			}
 
-			// check for optional OData $orderby specification and adapt the query accordingly
+			// Check for optional OData $orderby specification and adapt the query accordingly
+			// NOTE: this logic only handles one sort specification at a time.
 			if (queryParameters.ContainsKey("$orderby"))
 			{
 				entityQuery = AppendSortSpecificationToQuery(queryParameters, entityQuery);
@@ -80,13 +94,24 @@ namespace ContosoUniversityAngular.Controllers
 			// convert to list that includes grand total so grid can page
 			var entityList = new EntityList()
 			{
-				TotalItems = totalEntries
+				TotalItems = TotalItems
 			};
 			entityList.ListOfItems.AddRange(items);
 
 			return entityList;
 		}
 
+		/// <summary>
+		/// Checks for sort specification and generates additional query information
+		/// </summary>
+		/// <remarks>
+		/// This is hard-coded specifically for the StudentCountByEnrollmentDateView
+		/// because, as of July 2017, EF.Core 1.1 and ASP.Net Core 1.1 do not have a generic
+		/// OData V4 interface like the older Web API 2.2 has.
+		/// </remarks>
+		/// <param name="queryParameters"></param>
+		/// <param name="query"></param>
+		/// <returns></returns>
 		private static IQueryable<StudentCountByEnrollmentDateView> AppendSortSpecificationToQuery(IQueryCollection queryParameters, IQueryable<StudentCountByEnrollmentDateView> query)
 		{
 			StringValues orderbyValues;
