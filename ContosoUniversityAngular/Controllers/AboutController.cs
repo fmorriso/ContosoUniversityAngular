@@ -108,6 +108,7 @@ namespace ContosoUniversityAngular.Controllers
 		/// This is hard-coded specifically for the StudentCountByEnrollmentDateView
 		/// because, as of July 2017, EF.Core 1.1 and ASP.Net Core 1.1 do not have a generic
 		/// OData V4 interface like the older Web API 2.2 has.
+		/// It only handles a single sort criteria.
 		/// </remarks>
 		/// <param name="queryParameters"></param>
 		/// <param name="query"></param>
@@ -118,6 +119,7 @@ namespace ContosoUniversityAngular.Controllers
 			var exists = queryParameters.TryGetValue("$orderby", out orderbyValues);
 			if (exists)
 			{
+				// NOTE: only handles the first sort specification, not multiple
 				var orderbySingleColumn = orderbyValues.ToList().First();
 				switch (orderbySingleColumn)
 				{
