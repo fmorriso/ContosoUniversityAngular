@@ -22,6 +22,7 @@
 		            [height]="'inherit'">
 			<kendo-grid-column field="enrollmentDate"
 			                   title="Enrollment Date"
+							   filter="date"
 			                   width="75%">
 				<ng-template kendoGridCellTemplate let-item>
 					{{item.enrollmentDate | date:"yyyy-MM-dd"}}

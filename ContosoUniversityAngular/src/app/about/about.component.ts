@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
+
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/switchMap';
 
 import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
-import { SortDescriptor, orderBy, State, DataSourceRequestState, DataResult } from '@progress/kendo-data-query';
+import { DataSourceRequestState, DataResult } from '@progress/kendo-data-query'; // SortDescriptor, orderBy, State, 
 
 import { AboutService } from './about.service';
 import { StudentCountByEnrollmentDateView } from '../models/StudentCountByEnrollmentDateView';
 
-import 'rxjs/add/operator/switchMap';
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
 
 @Component({
@@ -31,7 +32,7 @@ export class AboutComponent implements OnInit {
 	// http://www.telerik.com/kendo-angular-ui/components/dataquery/mvc-integration/
 
 	constructor(private toastr: ToastrService,
-		private dataService: AboutService) { }
+		        private dataService: AboutService) { }
 
 	ngOnInit() {
 		//Promise.resolve(null).then(() => this.toastr.info('ngOnInit', this.compName));
