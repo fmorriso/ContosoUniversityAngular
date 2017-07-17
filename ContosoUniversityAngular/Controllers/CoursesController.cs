@@ -1,9 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.EntityFrameworkCore;
+
+using Kendo.Mvc.UI;
+using Kendo.Mvc.Extensions;
+
 using ContosoUniversityAngular.Database;
 using ContosoUniversityAngular.Models;
 
@@ -15,16 +21,16 @@ namespace ContosoUniversityAngular.Controllers
         public CoursesController(SchoolContext context) : base(context)
         {
         }
-
-		// GET: api/Courses		
-		/// <summary>
-		/// Gets a list of courses
-		/// </summary>
-		/// <example>
-		/// http://localhost:4200/api/courses/list
-		/// </example>
-		/// <returns></returns>
-		[HttpGet("api/[controller]/[action]")]
+		
+	    /// <summary>
+	    /// Gets a list of courses
+	    /// </summary>
+	    /// <example>
+	    /// http://localhost:4200/api/courses/list
+	    /// </example>
+	    /// <returns></returns>
+	    [HttpGet("api/[controller]/[action]")]
+#if USE_NON_TELERIK
 		public async Task<IEnumerable<Course>> List()
 	    {
 			return await _context.Courses
@@ -33,6 +39,23 @@ namespace ContosoUniversityAngular.Controllers
 				                 .AsNoTracking()
 				                 .ToListAsync();
 		}
+#else
+	    public async Task<JsonResult> List([DataSourceRequest] DataSourceRequest request)
+		{
+			var result = Json(await _context.Courses
+				                            .Include(i => i.Department)
+											.Select(x => new
+											{
+												x.CourseID,
+												x.Title,
+												x.Credits,
+												DepartmentName = x.Department.Name 
+											})
+											.AsNoTracking()
+											.ToDataSourceResultAsync(request));
+		    return result;
+		}
+#endif
 
 		/// <summary>
 		/// Gets a single course by its id

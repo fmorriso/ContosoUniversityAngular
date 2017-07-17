@@ -2,7 +2,7 @@
 	<div class="col-md-12 text-center h2">Courses</div>
 </div>
 
-<!--
+<!-- non Progress Kendo UI for Angular way of displaying the list
 <ng-template ngFor let-course [ngForOf]="courses | async">
 	<div class="row">
 		<div class="col-md-2">{{course.courseID}}</div>
@@ -15,12 +15,18 @@
 
 <div class="row">
 	<div class="col-md-12 grid-min-height">
-		<kendo-grid [kendoGridBinding]="courses | async"
-					[pageSize]="10"
-					[pageable]="true"
+		<kendo-grid [data]="items"
+					[pageSize]="state.take"
+					[skip]="state.skip"
+					[sort]="state.sort"
 					[sortable]="true"
-					[filterable]="true"
+					[pageable]="true"
+					[scrollable]="'scrollable'"
 					[groupable]="true"
+					[group]="state.group"
+					[filterable]="true"
+					[filter]="state.filter"
+					(dataStateChange)="dataStateChange($event)"
 					[height]="'inherit'">
 			<kendo-grid-column field="courseID"
 							   title="ID"
@@ -32,7 +38,7 @@
 			</kendo-grid-column>
 			<kendo-grid-column field="credits"
 							   title="Credits"
-			                   width="10%"
+							   width="10%"
 							   filter="numeric"
 							   [headerClass]="'grid-cell-right-justified'"
 							   [class]="'grid-cell-right-justified'">
@@ -41,9 +47,6 @@
 			<kendo-grid-column field="departmentName"
 							   title="Department"
 							   width="25%">
-				<ng-template kendoGridCellTemplate let-item>
-					{{getDepartmentName(item)}}
-				</ng-template>
 			</kendo-grid-column>
 
 		</kendo-grid>

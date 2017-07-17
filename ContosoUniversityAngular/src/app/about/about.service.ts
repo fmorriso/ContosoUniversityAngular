@@ -10,6 +10,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/of';
 
+import { SpinnerService } from 'app/spinner.service';
+
 import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import {
 	toODataString, toDataSourceRequestString,
@@ -18,29 +20,22 @@ import {
 } from '@progress/kendo-data-query';
 import { State } from '@progress/kendo-data-query';
 
+import { ToastrService, ToastrConfig } from 'ngx-toastr';
+
 import { StudentCountByEnrollmentDateView } from '../models/StudentCountByEnrollmentDateView';
-import { SpinnerService } from 'app/spinner.service';
 
 // http://www.telerik.com/kendo-angular-ui/components/dataquery/mvc-integration/
 @Injectable()
 export class AboutService {
-	//export class AboutService extends BehaviorSubject<GridDataResult> {
-
-	private compName: string = 'AboutService';
-	//private readonly headers = new Headers({ 'Content-Type': 'application/json' });
-	private relativeUrl = 'api/about';  // URL to web api
+	
+	private readonly compName: string = 'AboutService';
+	private readonly relativeUrl: string = 'api/about';  // URL to web api
 
 	constructor(private http: Http,
-		private spinnerService: SpinnerService) {
-		//super(null);
+		private spinnerService: SpinnerService,
+		private toastr: ToastrService) {
 		console.log(`${this.compName} - constructor - isLoading = ${this.spinnerService.isLoading}`);
 	}
-
-	/*	public query(state: State): void {
-			console.log(`${this.compName} - query - state=${JSON.stringify(state)}`);
-			this.fetch(state)
-				.subscribe(x => super.next(x));
-		}*/
 
 	public fetch(state: DataSourceRequestState): Observable<DataResult> {
 
@@ -88,24 +83,26 @@ export class AboutService {
 			.get(url)
 			.map((response: Response) => response.json())
 			.map(({ data, total }) => {
-				console.log(`${this.compName} - second map - data=${JSON.stringify(data)}`);
-				return (<GridDataResult> {
-						data: hasGroups ? translateDataSourceResultGroups(data) : data,
-						total: total
-						// convert the aggregates if such exists
-						//aggregateResult: translateAggregateResults(aggregateResults)
-					}
+				//console.log(`${this.compName} - second map - data=${JSON.stringify(data)}`);
+				Promise.resolve(null).then(() => this.toastr.info(`second map - data=${JSON.stringify(data)}`, this.compName));
+				return (<GridDataResult>{
+					data: hasGroups ? translateDataSourceResultGroups(data) : data,
+					total: total
+					// convert the aggregates if such exists
+					//aggregateResult: translateAggregateResults(aggregateResults)
+				}
 				)
 			})
 			.catch(this.handleError)
 			.finally(() => {
-				console.log(`${this.compName} - fetch - finally`)
+				//console.log(`${this.compName} - fetch - finally`)
 				Promise.resolve(null).then(() => this.spinnerService.isLoading = false);
 			});
 	}
 
 	private handleError(error: any): Promise<any> {
-		console.log(`${this.compName} - An error occurred - ${JSON.stringify(error)}`);
+		//console.log(`${this.compName} - An error occurred - ${JSON.stringify(error)}`);
+		Promise.resolve(null).then(() => this.toastr.error(`handleError - error=${JSON.stringify(error)}`, this.compName));
 		return Promise.reject(error.message || error);
 	}
 

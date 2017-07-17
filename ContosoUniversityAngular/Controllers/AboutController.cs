@@ -1,18 +1,12 @@
-﻿using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Primitives;
 
 using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 
 using ContosoUniversityAngular.Database;
-using ContosoUniversityAngular.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContosoUniversityAngular.Controllers
 {
@@ -54,11 +48,13 @@ namespace ContosoUniversityAngular.Controllers
 		[HttpGet("api/[controller]/[action]")]
 		public async Task<JsonResult> Summary([DataSourceRequest] DataSourceRequest request)
 		{
-			var result = Json(await _context.StudentCountByEnrollmentDateView.ToDataSourceResultAsync(request));
+			var result = Json(await _context.StudentCountByEnrollmentDateView
+				                            .AsNoTracking()
+											.ToDataSourceResultAsync(request));
 			return result;
 		}
 
 		#endregion
-		
+
 	}
 }

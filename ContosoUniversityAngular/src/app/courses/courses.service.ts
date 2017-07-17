@@ -8,17 +8,64 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/of';
 
+import { SpinnerService } from 'app/spinner.service';
+
+import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
+import {
+	toODataString, toDataSourceRequestString,
+	translateDataSourceResultGroups, translateAggregateResults,
+	DataResult, DataSourceRequestState
+	} from '@progress/kendo-data-query';
+import { State } from '@progress/kendo-data-query';
+
+import { ToastrService, ToastrConfig } from 'ngx-toastr';
+
 import { Course } from '../models/course';
 
+// http://www.telerik.com/kendo-angular-ui/components/dataquery/mvc-integration/
 @Injectable()
 export class CoursesService {
 
-	private headers = new Headers({ 'Content-Type': 'application/json' });
-	private relativeUrl = 'api/courses';  // URL to web api
+	private readonly compName: string = 'CoursesService';
+	private readonly relativeUrl: string = 'api/courses';  // URL to web api
 
-	constructor(private http: Http) {
-		console.log('CoursesService - constructor');
+	constructor(private http: Http,
+		private spinnerService: SpinnerService,
+		private toastr: ToastrService) {
+		console.log(`${this.compName} - constructor - isLoading = ${this.spinnerService.isLoading}`);
 	}
+
+	public fetch(state: DataSourceRequestState): Observable<DataResult> {
+
+		const queryStr = `${toDataSourceRequestString(state)}`;
+		const hasGroups = state.group && state.group.length;
+		const url: string = `${this.relativeUrl}/list?${queryStr}`;
+		console.log(`${this.compName} - fetch - url=${url}, state=${JSON.stringify(state)}`);
+
+		// turn on the spinner
+		Promise.resolve(null).then(() => this.spinnerService.isLoading = true);
+		
+		return this.http
+			.get(url)
+			.map((response: Response) => response.json())
+			.map(({ data, total }) => {
+				//console.log(`${this.compName} - second map - data=${JSON.stringify(data)}`);
+				Promise.resolve(null).then(() => this.toastr.info(`second map - data=${JSON.stringify(data)}`, this.compName));
+				return (<GridDataResult>{
+						data: hasGroups ? translateDataSourceResultGroups(data) : data,
+						total: total
+						// convert the aggregates if such exists
+						//aggregateResult: translateAggregateResults(aggregateResults)
+					}
+				)
+			})
+			.catch(this.handleError)
+			.finally(() => {
+				//console.log(`${this.compName} - fetch - finally`)
+				Promise.resolve(null).then(() => this.spinnerService.isLoading = false);
+			});
+	}
+
 
 	/*
 		[HttpGet("api/[controller]/[action]")]
