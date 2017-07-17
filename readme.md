@@ -42,3 +42,9 @@ Update-Database -StartupProject $startProj
 ## Angular Routing
 
 I use a separate Angular 4.x routing module since it allows me to perform lazy loading (if I feel so inclined).
+
+## Swashbuckle for ASP.Net Core
+In a search for an easier way to provide OData V4 capabilities, mainly for use in Telerik's Angular Grid,
+I'm looking at [Swashbucle.ASPNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore).
+
+/swagger/v1/swagger.json

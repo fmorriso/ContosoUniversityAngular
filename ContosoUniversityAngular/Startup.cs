@@ -51,7 +51,7 @@ namespace ContosoUnivserityAngular
             });
 
             services.AddMvc();
-			
+
 		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,7 +74,7 @@ namespace ContosoUnivserityAngular
 	        });
 
 			// https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing
-	        app.UseMvcWithDefaultRoute();
+			app.UseMvcWithDefaultRoute();
 	        app.UseDefaultFiles();
 	        app.UseStaticFiles();
 
