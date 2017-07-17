@@ -1,0 +1,27 @@
+{
+    "data": [
+        {
+            "enrollmentDate": "2005-09-01T00:00:00",
+            "studentCount": 1
+        },
+        {
+            "enrollmentDate": "2010-09-01T00:00:00",
+            "studentCount": 1
+        },
+        {
+            "enrollmentDate": "2011-09-01T00:00:00",
+            "studentCount": 1
+        },
+        {
+            "enrollmentDate": "2012-09-01T00:00:00",
+            "studentCount": 3
+        },
+        {
+            "enrollmentDate": "2013-09-01T00:00:00",
+            "studentCount": 2
+        }
+    ],
+    "total": 5,
+    "aggregateResults": null,
+    "errors": null
+}

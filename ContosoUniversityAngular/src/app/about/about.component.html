@@ -2,18 +2,23 @@
 	<div class="col-md-12 text-center h2">Student Body Statistics</div>
 </div>
 
-<!-- Reference: -->
-<!-- http://www.telerik.com/kendo-angular-ui/components/grid/data-binding/automatic-operations/ -->
-<!-- Custom Remote Directives -->
+<!-- References: -->
+<!-- http://www.telerik.com/kendo-angular-ui/components/dataquery/mvc-integration/ -->
 
 <div class="row">
 	<div class="col-md-12 grid-min-height" >
-		<kendo-grid aboutGridDataBinding
-		            [pageSize]="3"
-		            [pageable]="true"
+		<kendo-grid [data]="items"
+		            [pageSize]="state.take"
+		            [skip]="state.skip"
+		            [sort]="state.sort"
 		            [sortable]="true"
-		            [filterable]="true"
+		            [pageable]="true"
+		            [scrollable]="'scrollable'"
 		            [groupable]="true"
+		            [group]="state.group"
+		            [filterable]="true"
+		            [filter]="state.filter"
+		            (dataStateChange)="dataStateChange($event)"
 		            [height]="'inherit'">
 			<kendo-grid-column field="enrollmentDate"
 			                   title="Enrollment Date"
@@ -36,4 +41,3 @@
 		</kendo-grid>
 	</div>
 </div>
-

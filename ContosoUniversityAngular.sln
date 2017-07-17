@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContosoUniversityAngular", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{33B0CC69-5DBF-4F58-805E-A7D38CE1F155}"
 	ProjectSection(SolutionItems) = preProject
+		Example-Telerik-JsonResult.json = Example-Telerik-JsonResult.json
 		localhost-1499689313255.log = localhost-1499689313255.log
 		readme.md = readme.md
 	EndProjectSection

@@ -29,7 +29,6 @@ import { InstructorsService } from './instructors/instructors.service';
 import { CoursesService } from './courses/courses.service';
 import { DepartmentsService } from './departments/departments.service';
 import { AboutService } from './about/about.service';
-import { AboutGridDataBindingDirective } from './about/about-grid-data-binding.directive';
 import { GridExampleComponent } from './grid-example/grid-example.component';
 import { GridExampleService } from './grid-example/grid-example.service';
 import { GridCustomBindingDirective } from './grid-example/grid-custom-binding.directive';
@@ -49,7 +48,6 @@ import { SpinnerService } from './spinner.service';
 		CoursesComponent,
 		InstructorsComponent,
 		ContactComponent,
-		AboutGridDataBindingDirective,
 		GridExampleComponent,
 		GridCustomBindingDirective
 	],
