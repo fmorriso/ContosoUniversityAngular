@@ -13,8 +13,8 @@ namespace ContosoUniversityAngular.Models
 		public string Name { get; set; }
 	    public decimal Budget { get; set; }
 	    public DateTime StartDate { get; set; }
-	    public string LastName { get; set; }
-	    public string FirstName { get; set; }
-		public DateTime HireDate { get; set; }
+	    public string AdministratorLastName { get; set; }
+	    public string AdministratorFirstName { get; set; }
+		public DateTime AdministratorHireDate { get; set; }
 	}
 }

@@ -8,7 +8,7 @@ import { GridExampleService } from './grid-example.service';
 import { SpinnerService } from '../spinner.service';
 
 @Directive({
-	selector: '[gridCustomBinding]'
+	selector: '[app-grid-custom-binding]'
 })
 export class GridCustomBindingDirective extends DataBindingDirective implements OnInit, OnDestroy {
 
@@ -23,11 +23,11 @@ export class GridCustomBindingDirective extends DataBindingDirective implements 
 		        grid: GridComponent,
 		        private toastr: ToastrService) {
 		super(grid);
-		this.toastr.info(`constructor`, this.compName);
+		Promise.resolve(null).then(() => this.toastr.info(`constructor`, this.compName));
 	}
 
 	public ngOnInit(): void {
-		//this.toastr.info(`ngOnInit`, this.compName);
+		Promise.resolve(null).then(() => this.toastr.info(`ngOnInit`, this.compName));
 		this.serviceSubscription = this.service.subscribe((result: GridDataResult) => {
 			this.grid.data = result;
 		});
@@ -43,7 +43,7 @@ export class GridCustomBindingDirective extends DataBindingDirective implements 
 	}
 
 	public rebind(): void {
-		this.toastr.info(`rebind - state=${JSON.stringify(this.state)}`, this.compName, this.freezeToast);
+		Promise.resolve(null).then(() => this.toastr.info(`rebind - state=${JSON.stringify(this.state)}`, this.compName));
 		this.service.query(this.state);
 	}
 

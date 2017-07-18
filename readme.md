@@ -6,6 +6,48 @@ The starting point is the 10-part tutorial
 I then created a brand new solution in which the middle tier is an ASP.Net Core Web API,
 which is hopefully RESTul enough to be called from an Angular 4.x front-end.
 
+## Special NuGet source for Telerik
+
+Need to download the latest NuGet CLI and place it in the following directory:
+
+%USERPROFILE%\AppData\Roaming\NuGet\
+
+Then, add the above directory to your User PATH variable.
+Hint: the free tool, `Rapid Environment Editor` is a greate UI for accomplishing this task.
+
+Use Visual Studio `Tools \ Options \ NuGet Package Manager \ Package Manager Settings` to add the special NuGet package "source" for the following link
+http://docs.telerik.com/aspnet-mvc/getting-started/nuget-install
+
+To view the contents of the NuGet configuration, navigate to:
+`%AppData%\NuGet\NuGet.confg`  
+or, in PowerShell
+`$env:AppData\NuGet\NuGet.config` and examine its contents.
+Example:
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" protocolVersion="3" />
+    <add key="aspnet-contrib" value="https://www.myget.org/F/aspnet-contrib/api/v3/index.json" />
+    <add key="telerik.com" value="https://nuget.telerik.com/nuget" />
+  </packageSources>
+  <packageRestore>
+    <add key="enabled" value="True" />
+    <add key="automatic" value="False" />
+  </packageRestore>
+  <bindingRedirects>
+    <add key="skip" value="False" />
+  </bindingRedirects>
+  <packageManagement>
+    <add key="format" value="0" />
+    <add key="disabled" value="False" />
+  </packageManagement>
+</configuration>
+```
+
+`Install-Package -Id Telerik.UI.for.AspNet.Core -Verbose`
+
+
 ## Angular front end
 The basic Angular 4.x front-end was created using Angular-CLI 1.2.0 and currently uses Angular 4.2.6.
 

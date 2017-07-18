@@ -49,8 +49,8 @@ export class CoursesService {
 			.get(url)
 			.map((response: Response) => response.json())
 			.map(({ data, total }) => {
-				//console.log(`${this.compName} - second map - data=${JSON.stringify(data)}`);
-				Promise.resolve(null).then(() => this.toastr.info(`second map - data=${JSON.stringify(data)}`, this.compName));
+				console.log(`${this.compName} - second map - data=${JSON.stringify(data)}`);
+				// Promise.resolve(null).then(() => this.toastr.info(`second map - data=${JSON.stringify(data)}`, this.compName));
 				return (<GridDataResult>{
 						data: hasGroups ? translateDataSourceResultGroups(data) : data,
 						total: total

@@ -24,7 +24,7 @@ export class GridExampleService extends BehaviorSubject<GridDataResult> implemen
 	private tableName: string;
 
 	constructor(private http: Http,
-		        private spinnerService: SpinnerService) {
+		private spinnerService: SpinnerService) {
 		super(null);
 		this.tableName = 'Products';
 		console.log(`${this.compName} - constructor - isLoading = ${this.spinnerService.isLoading}`);
@@ -47,15 +47,15 @@ export class GridExampleService extends BehaviorSubject<GridDataResult> implemen
 		console.log(`${this.compName} - query - tableName=${tableName}, state=${JSON.stringify(state)}`);
 		const queryStr = `${toODataString(state)}&$count=true`;
 		//console.log(`${this.compName} - query - queryStr=${queryStr}`);
-		
+
 		Promise.resolve(null).then(() => this.spinnerService.isLoading = true);
-		
+
 		return this.http
 			.get(`${this.BASE_URL}${tableName}?${queryStr}`)
 			.map((response: Response) => response.json())
 			.map(response => (<GridDataResult>{
 				data: response.value,
-				total: parseInt(response["@odata.count"], 10)
+				total: parseInt(response['@odata.count'], 10)
 			}))
 			.finally(() => {
 				//console.log(`${this.compName} - query - finally`);
@@ -63,30 +63,30 @@ export class GridExampleService extends BehaviorSubject<GridDataResult> implemen
 			});
 	}
 
-/*
-	public queryForCategory({ CategoryID }: { CategoryID: number }, state?: any): void {
-		console.log(`${this.compName} - queryForCategory`);
-		this.query(Object.assign({}, state, {
-			filter: {
-				filters: [{
-					field: "CategoryID", operator: "eq", value: CategoryID
-				}],
-				logic: "and"
-			}
-		}));
-	}
-
-	public queryForProductName(ProductName: string, state?: any): void {
-		console.log(`${this.compName} - queryForProductName`);
-		this.query(Object.assign({}, state, {
-			filter: {
-				filters: [{
-					field: "ProductName", operator: "contains", value: ProductName
-				}],
-				logic: "and"
-			}
-		}));
-	}
-*/
+	/*
+		public queryForCategory({ CategoryID }: { CategoryID: number }, state?: any): void {
+			console.log(`${this.compName} - queryForCategory`);
+			this.query(Object.assign({}, state, {
+				filter: {
+					filters: [{
+						field: "CategoryID", operator: "eq", value: CategoryID
+					}],
+					logic: "and"
+				}
+			}));
+		}
+	
+		public queryForProductName(ProductName: string, state?: any): void {
+			console.log(`${this.compName} - queryForProductName`);
+			this.query(Object.assign({}, state, {
+				filter: {
+					filters: [{
+						field: "ProductName", operator: "contains", value: ProductName
+					}],
+					logic: "and"
+				}
+			}));
+		}
+	*/
 
 }

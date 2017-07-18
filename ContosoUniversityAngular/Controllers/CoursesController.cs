@@ -42,6 +42,7 @@ namespace ContosoUniversityAngular.Controllers
 #else
 	    public async Task<JsonResult> List([DataSourceRequest] DataSourceRequest request)
 		{
+#if USE_INCLUDE_TECHNIQUE
 			var result = Json(await _context.Courses
 				                            .Include(i => i.Department)
 											.Select(x => new
@@ -53,18 +54,23 @@ namespace ContosoUniversityAngular.Controllers
 											})
 											.AsNoTracking()
 											.ToDataSourceResultAsync(request));
-		    return result;
+#else
+			var result = Json(await _context.CoursesWithDepartmentView
+				                            .AsNoTracking()
+											.ToDataSourceResultAsync(request));
+#endif
+			return result;
 		}
 #endif
 
-		/// <summary>
-		/// Gets a single course by its id
-		/// </summary>
-		/// <example>
-		/// http://localhost:4200/api/courses/4041
-		/// </example>
-		/// <param name="id"></param>
-		/// <returns></returns>
+			/// <summary>
+			/// Gets a single course by its id
+			/// </summary>
+			/// <example>
+			/// http://localhost:4200/api/courses/4041
+			/// </example>
+			/// <param name="id"></param>
+			/// <returns></returns>
 		[HttpGet("api/[controller]/{id:int}")]
 		public async Task<IActionResult> Course([FromRoute] int id)
         {

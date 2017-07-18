@@ -12,9 +12,8 @@ import { Instructor } from '../models/instructor';
 
 @Injectable()
 export class InstructorsService {
-
-	private headers = new Headers({ 'Content-Type': 'application/json' });
-	private relativeUrl = 'api/instructors';  // URL to web api
+	
+	private readonly relativeUrl: string = 'api/instructors';  // URL to web api
 
 	constructor(private http: Http) {
 		console.log('InstructorsService - constructor');
