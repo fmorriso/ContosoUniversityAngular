@@ -24,12 +24,13 @@
 
 			<kendo-grid-column field="firstMidName"
 							   title="First Name"
-							   width="15%">
+							   width="20%">
 			</kendo-grid-column>
 
 			<kendo-grid-column field="enrollmentDate"
-							   title="Enrollment Date"
-							   width="10%">
+			                   title="Enrollment Date"
+							   filter="date"
+							   width="15%">
 				<ng-template kendoGridCellTemplate let-item>
 					{{item.enrollmentDate | date:"yyyy-MM-dd"}}
 				</ng-template>
