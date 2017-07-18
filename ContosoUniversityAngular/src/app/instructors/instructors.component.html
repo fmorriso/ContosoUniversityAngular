@@ -30,6 +30,7 @@
 			<kendo-grid-column field="hireDate"
 			                   title="Hire Date"
 			                   width="10%"
+							   filter="date"
 			                   >
 				<ng-template kendoGridCellTemplate let-item>
 					{{item.hireDate | date:"yyyy-MM-dd"}}
