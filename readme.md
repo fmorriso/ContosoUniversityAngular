@@ -90,3 +90,6 @@ In a search for an easier way to provide OData V4 capabilities, mainly for use i
 I'm looking at [Swashbucle.ASPNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore).
 
 /swagger/v1/swagger.json
+
+## Bootstrap V4
+https://medium.com/wdstack/bootstrap-4/home

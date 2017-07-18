@@ -16,40 +16,40 @@
 <div class="row">
 	<div class="col-md-12 grid-min-height">
 		<kendo-grid [data]="items"
-					[pageSize]="state.take"
-					[skip]="state.skip"
-					[sort]="state.sort"
-					[sortable]="true"
-					[pageable]="true"
-					[scrollable]="'scrollable'"
-					[groupable]="true"
-					[group]="state.group"
-					[filterable]="true"
-					[filter]="state.filter"
-					(dataStateChange)="dataStateChange($event)"
-					[height]="'inherit'">
+		            [pageSize]="state.take"
+		            [skip]="state.skip"
+		            [sort]="state.sort"
+		            [sortable]="true"
+		            [pageable]="true"
+		            [scrollable]="'scrollable'"
+		            [groupable]="true"
+		            [group]="state.group"
+		            [filterable]="true"
+		            [filter]="state.filter"
+		            (dataStateChange)="dataStateChange($event)"
+		            [height]="'inherit'">
+			
 			<kendo-grid-column field="courseID"
-							   title="ID"
-			                   width="15%"
-			                   [filterable]="false"
-			                   [sortable]="false"
+			                   title="ID"
+			                   [hidden]="true">
+			</kendo-grid-column>
+
+			<kendo-grid-column field="title"
+			                   title="Title"
+			                   width="40%"
 			                   [headerClass]="'grid-header-text-bold'">
 			</kendo-grid-column>
-			<kendo-grid-column field="title"
-							   title="Title"
-			                   width="35%"
-							   [headerClass]="'grid-header-text-bold'">
-			</kendo-grid-column>
+
 			<kendo-grid-column field="credits"
-							   title="Credits"
-							   width="15%"
-							   filter="numeric"
-							   [headerClass]="'grid-cell-right-justified grid-header-text-bold'"
-							   [class]="'grid-cell-right-justified'">
+			                   title="Credits"
+			                   width="25%"
+			                   filter="numeric"
+			                   [headerClass]="'grid-cell-right-justified grid-header-text-bold'"
+			                   [class]="'grid-cell-right-justified'">
 			</kendo-grid-column>
 
 			<kendo-grid-column field="departmentName"
-							   title="Department"
+			                   title="Department"
 			                   width="35%"
 			                   [headerClass]="'grid-header-text-bold'">
 			</kendo-grid-column>

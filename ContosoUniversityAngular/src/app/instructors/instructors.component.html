@@ -14,22 +14,22 @@
 			
 			<kendo-grid-column field="id"
 			                   title="ID"
-			                   width="10%">
+							   [hidden]="true">
 			</kendo-grid-column>
 
 			<kendo-grid-column field="lastName"
 			                   title="Last Name"
-			                   width="20%">
+			                   width="30%">
 			</kendo-grid-column>
 
 			<kendo-grid-column field="firstMidName"
 							   title="First Name"
-							   width="15%">
+							   width="30%">
 			</kendo-grid-column>
 			
 			<kendo-grid-column field="hireDate"
 			                   title="Hire Date"
-			                   width="10%"
+			                   width="20%"
 							   filter="date"
 			                   >
 				<ng-template kendoGridCellTemplate let-item>
@@ -39,7 +39,7 @@
 
 			<kendo-grid-column field="officeLocation"
 			                   title="Office"
-			                   width="15%">
+			                   width="20%">
 				<ng-template kendoGridCellTemplate let-item>
 					{{getOfficeLocation(item)}}
 				</ng-template>
