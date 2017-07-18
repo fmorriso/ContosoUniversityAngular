@@ -5,61 +5,58 @@
 <div class="row">
 	<div class="col-md-12 grid-min-height">
 		<kendo-grid [kendoGridBinding]="departments | async"
-		            [pageSize]="10"
-		            [pageable]="true"
-		            [sortable]="true"
-		            [filterable]="true"
-		            [groupable]="true"
-		            [height]="'inherit'">
+					[pageSize]="10"
+					[pageable]="true"
+					[sortable]="true"
+					[filterable]="true"
+					[groupable]="true"
+					[height]="'inherit'">
 			<kendo-grid-column field="id"
-			                   title="ID"
-			                   width="5%"
-			                   [filterable]="false"
+							   title="ID"
+							   width="5%"
+							   [filterable]="false"
 							   [sortable]="false"
-			                   [headerClass]="'grid-cell-right-justified'"
-			                   [class]="'grid-cell-right-justified'">
+							   [headerClass]="'grid-cell-right-justified'"
+							   [class]="'grid-cell-right-justified'">
 			</kendo-grid-column>
 			<kendo-grid-column field="name"
-			                   title="Name"
-			                   width="25%">
+							   title="Name"
+							   width="25%">
 			</kendo-grid-column>
-			
+
 			<kendo-grid-column field="budget"
-			                   title="Budget"
-			                   width="15%"
-			                   filter="numeric"
-			                   [headerClass]="'grid-cell-right-justified'"
-			                   [class]="'grid-cell-right-justified'">
+							   title="Budget"
+							   width="15%"
+							   filter="numeric"
+							   [headerClass]="'grid-cell-right-justified'"
+							   [class]="'grid-cell-right-justified'">
 				<ng-template kendoGridCellTemplate let-item>
 					{{item.budget | currency:'USD':true:'2.0-0'}}
 				</ng-template>
 			</kendo-grid-column>
-			
-			<kendo-grid-column field="administratorLastName"
-			                   width="20%">
-				<ng-template kendoGridHeaderTemplate let-column>
-					<span>Administrator</span><br/><span>Last Name</span>
-				</ng-template>
-			</kendo-grid-column>
-			
-			<kendo-grid-column field="administratorFirstName"
-			                   width="20%">
-				<ng-template kendoGridHeaderTemplate let-column>
-					<span>Administrator</span><br /><span>First Name</span>
-				</ng-template>
-			</kendo-grid-column>
-			
-			<kendo-grid-column field="administratorHireDate"
-			                   filter="date"
-							   title="Hire Date"
-			                   width="15%">
-				<ng-template kendoGridHeaderTemplate let-column>
-					<span>Administrator</span><br /><span>Hire Date</span>
-				</ng-template>
-				<ng-template kendoGridCellTemplate let-item>
-					{{item.administratorHireDate | date:"yyyy-MM-dd"}}
-				</ng-template>
-			</kendo-grid-column>
+
+			<kendo-grid-column-group title="Administrator" [headerClass]="'grid-text-center bg-info'">
+
+				<kendo-grid-column field="administratorLastName"
+								   title="Last Name"
+								   width="20%">
+				</kendo-grid-column>
+
+				<kendo-grid-column field="administratorFirstName"
+								   title="First Name"
+								   width="20%">
+				</kendo-grid-column>
+
+				<kendo-grid-column field="administratorHireDate"
+								   filter="date"
+								   title="Hire Date"
+								   width="15%">
+					<ng-template kendoGridCellTemplate let-item>
+						{{item.administratorHireDate | date:"yyyy-MM-dd"}}
+					</ng-template>
+				</kendo-grid-column>
+
+			</kendo-grid-column-group>
 
 		</kendo-grid>
 	</div>
