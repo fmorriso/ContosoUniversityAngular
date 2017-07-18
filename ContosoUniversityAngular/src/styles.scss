@@ -55,7 +55,20 @@
 .grid-text-center {
 	text-align: center !important ;
 }
+
+.grid-header-green-inverse {
+	color: #fff !important;
+	background-color: #96ca54 !important;
+
+}
+
+.grid-header-text-bold {
+	font-weight: bold !important;
+}
 /* end of Kendo Angular Grid Styling overrides */
+
+/* Bootstrap V4 Alpha 6 */
+@import "~bootstrap/scss/bootstrap.scss";
 
 /* Kendo Angular UI theme */
 @import "~@progress/kendo-theme-bootstrap/scss/all";

@@ -7,35 +7,41 @@
 		<kendo-grid [kendoGridBinding]="departments | async"
 					[pageSize]="10"
 					[pageable]="true"
-					[sortable]="true"
+					[sortable]="{allowUnsort: true, mode: 'multiple'}"
 					[filterable]="true"
 					[groupable]="true"
 					[height]="'inherit'">
-			<kendo-grid-column field="id"
-							   title="ID"
-							   width="5%"
-							   [filterable]="false"
-							   [sortable]="false"
-							   [headerClass]="'grid-cell-right-justified'"
-							   [class]="'grid-cell-right-justified'">
-			</kendo-grid-column>
-			<kendo-grid-column field="name"
-							   title="Name"
-							   width="25%">
-			</kendo-grid-column>
 
-			<kendo-grid-column field="budget"
-							   title="Budget"
-							   width="15%"
-							   filter="numeric"
-							   [headerClass]="'grid-cell-right-justified'"
-							   [class]="'grid-cell-right-justified'">
-				<ng-template kendoGridCellTemplate let-item>
-					{{item.budget | currency:'USD':true:'2.0-0'}}
-				</ng-template>
-			</kendo-grid-column>
+			<kendo-grid-column-group title="Department "
+									 [headerClass]="'grid-text-center bg-primary grid-header-text-bold'">
 
-			<kendo-grid-column-group title="Administrator" [headerClass]="'grid-text-center bg-info'">
+				<kendo-grid-column field="id"
+								   title="ID"
+								   width="5%"
+								   [filterable]="false"
+								   [sortable]="false"
+								   [headerClass]="'grid-cell-right-justified'"
+								   [class]="'grid-cell-right-justified'">
+				</kendo-grid-column>
+				<kendo-grid-column field="name"
+								   title="Name"
+								   width="25%">
+				</kendo-grid-column>
+
+				<kendo-grid-column field="budget"
+								   title="Budget"
+								   width="15%"
+								   filter="numeric"
+								   [headerClass]="'grid-cell-right-justified'"
+								   [class]="'grid-cell-right-justified'">
+					<ng-template kendoGridCellTemplate let-item>
+						{{item.budget | currency:'USD':true:'2.0-0'}}
+					</ng-template>
+				</kendo-grid-column>
+			</kendo-grid-column-group>
+
+			<kendo-grid-column-group title="Administrator"
+									 [headerClass]="'grid-text-center grid-header-green-inverse grid-header-text-bold'">
 
 				<kendo-grid-column field="administratorLastName"
 								   title="Last Name"

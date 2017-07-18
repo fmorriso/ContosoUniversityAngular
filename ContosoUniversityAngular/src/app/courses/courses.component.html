@@ -30,23 +30,28 @@
 					[height]="'inherit'">
 			<kendo-grid-column field="courseID"
 							   title="ID"
-							   width="10%">
+			                   width="15%"
+			                   [filterable]="false"
+			                   [sortable]="false"
+			                   [headerClass]="'grid-header-text-bold'">
 			</kendo-grid-column>
 			<kendo-grid-column field="title"
 							   title="Title"
-							   width="25%">
+			                   width="35%"
+							   [headerClass]="'grid-header-text-bold'">
 			</kendo-grid-column>
 			<kendo-grid-column field="credits"
 							   title="Credits"
-							   width="10%"
+							   width="15%"
 							   filter="numeric"
-							   [headerClass]="'grid-cell-right-justified'"
+							   [headerClass]="'grid-cell-right-justified grid-header-text-bold'"
 							   [class]="'grid-cell-right-justified'">
 			</kendo-grid-column>
 
 			<kendo-grid-column field="departmentName"
 							   title="Department"
-							   width="25%">
+			                   width="35%"
+			                   [headerClass]="'grid-header-text-bold'">
 			</kendo-grid-column>
 
 		</kendo-grid>
