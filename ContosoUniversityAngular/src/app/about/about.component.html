@@ -20,9 +20,10 @@
 		            [filter]="state.filter"
 		            (dataStateChange)="dataStateChange($event)"
 		            [height]="'inherit'">
+			
 			<kendo-grid-column field="enrollmentDate"
 			                   title="Enrollment Date"
-							   filter="date"
+			                   filter="date"
 			                   width="75%">
 				<ng-template kendoGridCellTemplate let-item>
 					{{item.enrollmentDate | date:"yyyy-MM-dd"}}
@@ -33,8 +34,7 @@
 			                   width="25%"
 			                   filter="numeric"
 			                   [headerClass]="'grid-cell-right-justified'"
-			                   [class]="'grid-cell-right-justified'"
-							   >
+			                   [class]="'grid-cell-right-justified'">
 				<ng-template kendoGridCellTemplate let-item>
 					{{item.studentCount | number:'1.0-0' }}
 				</ng-template>

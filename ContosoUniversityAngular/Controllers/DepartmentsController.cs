@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversityAngular.Database;
 using ContosoUniversityAngular.Models;
+using Kendo.Mvc.UI;
+using Kendo.Mvc.Extensions;
 
 namespace ContosoUniversityAngular.Controllers
 {
@@ -21,15 +23,15 @@ namespace ContosoUniversityAngular.Controllers
 		/// <example>
 		/// http://localhost:4200/api/departments/list
 		/// </example>
-		/// <returns></returns>
+		/// <returns>JSON representation of a Telerik DataSourceResult</returns>
 		[HttpGet("api/[controller]/[action]")]
-		public async Task<IEnumerable<DepartmentSummaryView>> List()
-	    {
-		    return await _context.DepartmentSummaryView
-			                     .OrderBy(column => column.Name)
-			                     .AsNoTracking()
-			                     .ToListAsync();
-	    }
+		public async Task<JsonResult> List([DataSourceRequest] DataSourceRequest request)
+		{
+		    var result = Json(await _context.DepartmentSummaryView
+				                            .AsNoTracking()
+			                                .ToDataSourceResultAsync(request));
+		    return result;
+		}
 
 		// GET: api/Departments/5
 		[HttpGet("api/[controller]/{id:int}")]

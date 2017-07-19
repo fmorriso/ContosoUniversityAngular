@@ -35,24 +35,24 @@ export class AboutComponent implements OnInit {
 		        private dataService: AboutService) { }
 
 	ngOnInit() {
-		Promise.resolve(null).then(() => this.toastr.info(`ngOnInit - state=${this.state}`, this.compName));
+		Promise.resolve(null).then(() => this.toastr.info(`ngOnInit - state=${JSON.stringify(this.state)}`, this.compName));
 		//console.log(`${this.compName} - ngOnInit`);
-		this.dataService.fetch(this.state)
-			.subscribe((r: DataResult) => {
-				//console.log(`${this.compName} - ngOnInit.subscribe - r=${JSON.stringify(r)}`);
-				Promise.resolve(null).then(() => this.toastr.info(`ngOnInit.subscribe - r=${JSON.stringify(r)}`, this.compName));
-				this.items = <GridDataResult> r;
-			});
+		this.getGridItems();
 	}
 
 	public dataStateChange(state: DataStateChangeEvent): void {
 		Promise.resolve(null).then(() => this.toastr.info(`dataStateChange - state=${JSON.stringify(state)}`, this.compName));
 		//console.log(`${this.compName} - dataStateChange - state=${JSON.stringify(state)}`);
 		this.state = state;
-		this.dataService.fetch(state)
+		this.getGridItems();
+	}
+
+	private getGridItems() {
+		this.dataService.fetch(this.state)
 			.subscribe((r: DataResult) => {
-				console.log(`${this.compName} - dataStateChange.subscribe - r=${JSON.stringify(r)}`);
-				this.items = <GridDataResult> r;
+				//console.log(`${this.compName} - ngOnInit.subscribe - r=${JSON.stringify(r)}`);
+				Promise.resolve(null).then(() => this.toastr.info(`ngOnInit.subscribe - r=${JSON.stringify(r)}`, this.compName));
+				this.items = <GridDataResult>r;
 			});
 	}
 

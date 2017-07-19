@@ -1,4 +1,26 @@
 ﻿/* You can add global styles to this file, and also import other style files */
+
+/* Bootstrap V4 Alpha 6 */
+$font-size-base: 0.75rem !default; // override Bootstrap V4 defaults before importing. 0.75rem => 12px (approx)
+$font-size-h1: 2rem !default; // 2.5
+$font-size-h2: 1.6rem !default; // 2
+$font-size-h3: 1.4rem !default; // 1.75
+$font-size-h4: 1.2rem !default; // 1.5
+$font-size-h5: 1rem !default; // 1.25
+$font-size-h6: 0.8rem !default; // 1
+@import "~bootstrap/scss/bootstrap.scss";
+
+/* Kendo Angular UI theme */
+@import "~@progress/kendo-theme-bootstrap/scss/all";
+
+/* Extra padding to keep navigation bar from overlapping the rest of the content below it */
+body {
+	padding-top: 65px !important;
+}
+
+/* ngx-toastr */
+@import "~ngx-toastr/toastr";
+
 /*
 	Spinner that shows during navigation and some data retrieval operations
 */
@@ -59,7 +81,6 @@
 .grid-header-green-inverse {
 	color: #fff !important;
 	background-color: #96ca54 !important;
-
 }
 
 .grid-header-text-bold {
@@ -71,23 +92,3 @@
 }
 /* end of Kendo Angular Grid Styling overrides */
 
-/* Bootstrap V4 Alpha 6 */
-$font-size-base: 0.75rem !default; // override Bootstrap V4 defaults before importing. 0.75rem => 12px (approx)
-$font-size-h1: 2rem !default;  // 2.5
-$font-size-h2: 1.6rem !default; // 2
-$font-size-h3: 1.4rem !default; // 1.75
-$font-size-h4: 1.2rem !default; // 1.5
-$font-size-h5: 1rem !default; // 1.25
-$font-size-h6: 0.8rem !default; // 1
-@import "~bootstrap/scss/bootstrap.scss";
-
-/* Kendo Angular UI theme */
-@import "~@progress/kendo-theme-bootstrap/scss/all";
-
-/* Extra padding to keep navigation bar from overlapping the rest of the content below it */
-body {
-  padding-top: 50px;
-}
-
-/* ngx-toastr */
-@import "~ngx-toastr/toastr";
