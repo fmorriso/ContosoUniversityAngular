@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { ToastrModule } from 'ngx-toastr';
+import { BusyModule } from 'angular2-busy';
 
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { InputsModule } from '@progress/kendo-angular-inputs';
@@ -54,6 +55,7 @@ import { SpinnerService } from './spinner.service';
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
+		BusyModule,
 		FormsModule,
 		HttpModule,
 		DateInputsModule,

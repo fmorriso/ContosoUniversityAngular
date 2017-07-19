@@ -43,7 +43,7 @@ export class DepartmentsComponent implements OnInit {
 	}
 
 	// this method does not seem to be called when using 
-	protected sortChange(sort: SortDescriptor[]): void {
+	public sortChange(sort: SortDescriptor[]): void {
 		console.log(`${this.compName} - sortChange - sort=${JSON.stringify(sort)}`);
 		this.state.sort = sort;
 		this.getGridItems();
