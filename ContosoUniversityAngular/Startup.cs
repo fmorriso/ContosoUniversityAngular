@@ -4,13 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using ContosoUniversityAngular.Database;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+
 using System;
 using System.Net;
-using Microsoft.AspNetCore.Http;
+
 using System.IO;
+using ContosoUniversityAngular.Database;
 
 namespace ContosoUnivserityAngular
 {
