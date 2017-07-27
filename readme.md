@@ -49,9 +49,9 @@ Example:
 
 
 ## Angular front end
-The basic Angular 4.x front-end was created using Angular-CLI 1.2.0 and currently uses Angular 4.2.6.
+The basic Angular 4.x front-end was created using Angular-CLI 1.2 and currently uses Angular 4.3.1.
 
-I used varioud Angular-CLI commands to create the components, services and directives as needed.
+I used various Angular-CLI commands to create the components, services and directives as needed.
 
 Examples:
 ```
@@ -85,11 +85,11 @@ Update-Database -StartupProject $startProj
 
 I use a separate Angular 4.x routing module since it allows me to perform lazy loading (if I feel so inclined).
 
-## Swashbuckle for ASP.Net Core
-In a search for an easier way to provide OData V4 capabilities, mainly for use in Telerik's Angular Grid,
-I'm looking at [Swashbucle.ASPNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore).
-
-/swagger/v1/swagger.json
-
 ## Bootstrap V4
 https://medium.com/wdstack/bootstrap-4/home
+
+This may not have been my smartest move, but since Bootstrap 4 is going to one day replace Bootrap 3,
+I figured now is the time to find out how to make the transition. 
+
+It turns out the biggest hurdle was the major changes to how a navigation bar is laid on in terms of the HTML
+and CSS classes used.
