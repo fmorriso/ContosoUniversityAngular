@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
-import { BusyModule } from 'angular2-busy';
 
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { InputsModule } from '@progress/kendo-angular-inputs';
@@ -35,7 +35,6 @@ import { GridExampleService } from './grid-example/grid-example.service';
 import { GridCustomBindingDirective } from './grid-example/grid-custom-binding.directive';
 import { SpinnerService } from './spinner.service';
 
-
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -55,7 +54,7 @@ import { SpinnerService } from './spinner.service';
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
-		BusyModule,
+		NgbModule.forRoot(),
 		FormsModule,
 		HttpModule,
 		DateInputsModule,
