@@ -2,8 +2,7 @@ import { Directive, OnInit, OnDestroy } from '@angular/core';
 import { DataBindingDirective, GridComponent, GridDataResult } from '@progress/kendo-angular-grid';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ToastrService } from 'ngx-toastr';
-import { IndividualConfig as ToastrConfig } from 'ngx-toastr'; 
+import { ToastrService, ToastrConfig } from 'ngx-toastr';
 
 import { GridExampleService } from './grid-example.service';
 import { SpinnerService } from '../spinner.service';

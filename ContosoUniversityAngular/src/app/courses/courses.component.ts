@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { ToastrService } from 'ngx-toastr';
-import { IndividualConfig as ToastrConfig } from 'ngx-toastr';
+import { ToastrService, ToastrConfig } from 'ngx-toastr';
 
 import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { DataSourceRequestState, DataResult } from '@progress/kendo-data-query'; 

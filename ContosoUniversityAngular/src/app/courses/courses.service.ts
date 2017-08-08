@@ -18,8 +18,7 @@ import {
 	} from '@progress/kendo-data-query';
 import { State } from '@progress/kendo-data-query';
 
-import { ToastrService } from 'ngx-toastr';
-import { IndividualConfig as ToastrConfig } from 'ngx-toastr';
+import { ToastrService, ToastrConfig } from 'ngx-toastr';
 
 import { Course } from '../models/course';
 
