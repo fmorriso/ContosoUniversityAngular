@@ -2,7 +2,8 @@ import { Directive, OnInit, OnDestroy } from '@angular/core';
 import { DataBindingDirective, GridComponent, GridDataResult } from '@progress/kendo-angular-grid';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ToastrService, ToastrConfig } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
+import { IndividualConfig as ToastrConfig } from 'ngx-toastr'; 
 
 import { GridExampleService } from './grid-example.service';
 import { SpinnerService } from '../spinner.service';
@@ -14,7 +15,7 @@ export class GridCustomBindingDirective extends DataBindingDirective implements 
 
 	private serviceSubscription: Subscription;
 	private readonly compName: string = 'GridCustomBindingDirective';
-	private readonly freezeToast: ToastrConfig = {
+    private readonly freezeToast: ToastrConfig = {
 		closeButton: true,
 		timeOut: 0
 	};
@@ -23,7 +24,7 @@ export class GridCustomBindingDirective extends DataBindingDirective implements 
 		        grid: GridComponent,
 		        private toastr: ToastrService) {
 		super(grid);
-		Promise.resolve(null).then(() => this.toastr.info(`constructor`, this.compName));
+		Promise.resolve(null).then(() => this.toastr.info(`constructor`, this.compName, this.freezeToast));
 	}
 
 	public ngOnInit(): void {
