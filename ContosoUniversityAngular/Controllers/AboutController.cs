@@ -7,6 +7,9 @@ using Kendo.Mvc.Extensions;
 
 using ContosoUniversityAngular.Database;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using ContosoUnivserityAngular;
+using System.Diagnostics;
 
 namespace ContosoUniversityAngular.Controllers
 {
@@ -14,10 +17,30 @@ namespace ContosoUniversityAngular.Controllers
 	public class AboutController : BaseController
 	{
 		public static int TotalItems { get; set; }
+	    private IConfiguration configuration;
 
-		public AboutController(SchoolContext context) : base(context)
+		public AboutController(SchoolContext context, IConfiguration configuration) : base(context)
 		{
-		}
+            // capture access to appSettings.json via dependency injection.
+		    this.configuration = configuration;
+
+		    // pull out some values from appSettings.json 
+		    string dummyTest1 = string.Empty;
+		    IConfigurationSection dummyTest1config = configuration.GetSection("Dummy:test1");
+            if (dummyTest1config != null)
+		    {
+		        dummyTest1 = dummyTest1config.Value;
+		        Debug.WriteLine($"test1={dummyTest1}");
+		    }
+
+		    string dummyTest2 = string.Empty;
+		    IConfigurationSection dummyTest2config = configuration.GetSection("Dummy:test2");
+		    if (dummyTest2config != null)
+		    {
+		        dummyTest2 = dummyTest2config.Value;
+		        Debug.WriteLine($"test2={dummyTest2}");
+		    }
+        }
 
 		#region Telerik Kendo-Angular Integration
 

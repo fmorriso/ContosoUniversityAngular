@@ -13,6 +13,7 @@ using System.Net;
 
 using System.IO;
 using ContosoUniversityAngular.Database;
+using System.Diagnostics;
 
 namespace ContosoUnivserityAngular
 {
@@ -26,7 +27,7 @@ namespace ContosoUnivserityAngular
 				.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
 				.AddEnvironmentVariables();
 			Configuration = builder.Build();
-
+		    
 		}
 
 		public IConfigurationRoot Configuration { get; }
@@ -58,7 +59,14 @@ namespace ContosoUnivserityAngular
 					});
 			});
 
-			services.AddMvc();
+            // Make the appSettings.json available to other parts of the application, such as Controllers.
+            // NOTE: requires the following dependenc injection into the constructor of whatever class needs
+            //       access to appSettings:
+            //       public YourClassOrController(IConfiguration configuration, ... anything else)
+            //       You should probably capture the configuration in a private class variable.
+            services.AddSingleton<IConfiguration>(Configuration);
+            
+            services.AddMvc();
 			services.AddKendo();
 
 		}
