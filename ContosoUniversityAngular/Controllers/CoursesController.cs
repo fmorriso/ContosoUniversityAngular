@@ -21,15 +21,15 @@ namespace ContosoUniversityAngular.Controllers
         public CoursesController(SchoolContext context) : base(context)
         {
         }
-		
-	    /// <summary>
-	    /// Gets a list of courses
-	    /// </summary>
-	    /// <example>
-	    /// http://localhost:4200/api/courses/list
-	    /// </example>
-	    /// <returns></returns>
-	    [HttpGet("api/[controller]/[action]")]
+
+        /// <summary>
+        /// Gets a list of courses
+        /// </summary>
+        /// <example>
+        /// http://localhost:4200/api/courses/list
+        /// </example>
+        /// <returns></returns>
+        [HttpGet("api/[controller]/[action]")]
 #if USE_NON_TELERIK
 		public async Task<IEnumerable<Course>> List()
 	    {
@@ -40,8 +40,8 @@ namespace ContosoUniversityAngular.Controllers
 				                 .ToListAsync();
 		}
 #else
-	    public async Task<JsonResult> List([DataSourceRequest] DataSourceRequest request)
-		{
+        public async Task<JsonResult> List([DataSourceRequest] DataSourceRequest request)
+        {
 #if USE_INCLUDE_TECHNIQUE
 			var result = Json(await _context.Courses
 				                            .Include(i => i.Department)
@@ -55,32 +55,32 @@ namespace ContosoUniversityAngular.Controllers
 											.AsNoTracking()
 											.ToDataSourceResultAsync(request));
 #else
-			var result = Json(await _context.CoursesWithDepartmentView
-				                            .AsNoTracking()
-											.ToDataSourceResultAsync(request));
+            var result = Json(await _context.CoursesWithDepartmentView
+                                            .AsNoTracking()
+                                            .ToDataSourceResultAsync(request));
 #endif
-			return result;
-		}
+            return result;
+        }
 #endif
 
-			/// <summary>
-			/// Gets a single course by its id
-			/// </summary>
-			/// <example>
-			/// http://localhost:4200/api/courses/4041
-			/// </example>
-			/// <param name="id"></param>
-			/// <returns></returns>
-		[HttpGet("api/[controller]/{id:int}")]
-		public async Task<IActionResult> Course([FromRoute] int id)
+        /// <summary>
+        /// Gets a single course by its id
+        /// </summary>
+        /// <example>
+        /// http://localhost:4200/api/courses/4041
+        /// </example>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("api/[controller]/{id:int}")]
+        public async Task<IActionResult> Course([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-	        var course = await _context.Courses.FindAsync(id);
-			if (course == null)
+            var course = await _context.Courses.FindAsync(id);
+            if (course == null)
             {
                 return NotFound();
             }
@@ -124,7 +124,7 @@ namespace ContosoUniversityAngular.Controllers
 
         // POST: api/Courses
         [HttpPost("api/[controller]")]
-		public async Task<IActionResult> PostCourse([FromBody] Course course)
+        public async Task<IActionResult> PostCourse([FromBody] Course course)
         {
             if (!ModelState.IsValid)
             {
@@ -160,7 +160,7 @@ namespace ContosoUniversityAngular.Controllers
                 return BadRequest(ModelState);
             }
 
-	        var course = await _context.Courses.FindAsync(id);
+            var course = await _context.Courses.FindAsync(id);
             if (course == null)
             {
                 return NotFound();
