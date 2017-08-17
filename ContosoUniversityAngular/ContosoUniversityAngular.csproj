@@ -5,6 +5,7 @@
 		<PackageTargetFallback>portable-net45+win8</PackageTargetFallback>
 		<Description>Contoso University using Angular 4.x edition</Description>
 		<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+		<TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
