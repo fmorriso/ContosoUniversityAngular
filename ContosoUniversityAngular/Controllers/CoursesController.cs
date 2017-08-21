@@ -55,9 +55,9 @@ namespace ContosoUniversityAngular.Controllers
 											.AsNoTracking()
 											.ToDataSourceResultAsync(request));
 #else
-            var result = Json(await _context.CoursesWithDepartmentView
-                                            .AsNoTracking()
-                                            .ToDataSourceResultAsync(request));
+            JsonResult result = Json(await _context.CoursesWithDepartmentView
+                                                   .AsNoTracking()
+                                                   .ToDataSourceResultAsync(request));
 #endif
             return result;
         }

@@ -3,8 +3,17 @@
 The starting point is the 10-part tutorial 
 [Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro)
 
-I then created a brand new solution in which the middle tier is an ASP.Net Core Web API,
+I then used Visual Stuiod 2017 to create a brand new solution in which the middle tier is an ASP.Net Core 1.1 Web API,
 which is hopefully RESTul enough to be called from an Angular 4.x front-end.
+
+I then created a separate Angular 4.x application using the Angular-CLI tool in a different directory and copied parts of it over to the
+previously created Visual Studio 2017 solution.
+
+Key aspects of that Angular-CLI project are:
+* I specified `--routing` when I created it.
+* I specified `--style=scss` when I created it (in anticipation of using Bootstrap 4 beta)
+* When I build it, I do so with the following command to make the emitted JavaScript as small as possible and keep the emitted CSS in its own bundle:
+`ng build --progress --verbose --vendor-chunk --extract-css --prod`
 
 ## Special NuGet source for Telerik
 
@@ -49,7 +58,7 @@ Example:
 
 
 ## Angular front end
-The basic Angular 4.x front-end was created using Angular-CLI 1.2 and currently uses Angular 4.3.1.
+The basic Angular 4.x front-end was created using Angular-CLI 1.2 (upgraded to 1.3.1) and currently uses Angular 4.3.5.
 
 I used various Angular-CLI commands to create the components, services and directives as needed.
 
