@@ -95,7 +95,10 @@ Update-Database -StartupProject $startProj
 I use a separate Angular 4.x routing module since it allows me to perform lazy loading (if I feel so inclined).
 
 ## Bootstrap V4
-https://medium.com/wdstack/bootstrap-4/home
+
+[Bootstrap 4: What's New](https://medium.com/wdstack/bootstrap-4/home)
+
+[Upgrade Bootstrap 4 Alpha 6 to Beta](https://medium.com/wdstack/upgrade-bootstrap-4-alpha-6-to-beta-ca582f15ee32)
 
 This may not have been my smartest move, but since Bootstrap 4 is going to one day replace Bootrap 3,
 I figured now is the time to find out how to make the transition. 
